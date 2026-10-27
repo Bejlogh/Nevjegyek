@@ -99,7 +99,6 @@ namespace Névjegyzék
                     Contacts.Insert(0, temp);
                     SelectedContact = temp;
 
-                    MessageBox.Show("Sikeres módosítás!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

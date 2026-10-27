@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfContactGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ContactGroup>
-    <Name>csoport12</Name>
-    <Contacts />
-    <Notes />
+    <Id>210f23a7f57e428bbded8f4e2377cce9</Id>
+    <Name>teszt1</Name>
+    <Contacts>
+      <Contact>
+        <Id>51036d243166475ba332f9ca488b033e</Id>
+        <Name>teszt</Name>
+        <Email>teszt@teszt.hu</Email>
+        <Phone>10101010</Phone>
+        <BirthDate>2026-10-06</BirthDate>
+        <Website>teszt.com</Website>
+        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\aeb38a16-07e5-483f-9c1f-4d964c73d942.jpg</ImagePath>
+        <IsBlocked>false</IsBlocked>
+      </Contact>
+    </Contacts>
   </ContactGroup>
 </ArrayOfContactGroup>

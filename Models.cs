@@ -11,9 +11,31 @@ namespace Névjegyzék
     [Serializable]
     public class ContactGroup : INotifyPropertyChanged
     {
+        private string _id;
         private string _name;
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
         private ObservableCollection<Note> _notes = new ObservableCollection<Note>();
+
+        public ContactGroup()
+        {
+            Id = GenerateId();
+        }
+
+        public string Id
+        {
+            get => _id;
+            set { _id = string.IsNullOrWhiteSpace(value) ? GenerateId() : value; OnPropertyChanged(); }
+        }
+
+        public void EnsureId()
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                Id = GenerateId();
+            }
+        }
+
+        public static string GenerateId() => Guid.NewGuid().ToString("N");
 
         public string Name
         {
@@ -27,6 +49,7 @@ namespace Névjegyzék
             set { _contacts = value; OnPropertyChanged(); }
         }
 
+        [XmlIgnore]
         public ObservableCollection<Note> Notes
         {
             get => _notes;
@@ -46,6 +69,7 @@ namespace Névjegyzék
     [Serializable]
     public class Contact : INotifyPropertyChanged
     {
+        private string _id;
         private string _name;
         private string _email;
         private string _phone;
@@ -56,6 +80,27 @@ namespace Névjegyzék
         private string _imagePath; 
         private string _contactName;
         private bool _isBlocked;
+
+        public Contact()
+        {
+            Id = GenerateId();
+        }
+
+        public string Id
+        {
+            get => _id;
+            set { _id = string.IsNullOrWhiteSpace(value) ? GenerateId() : value; OnPropertyChanged(); }
+        }
+
+        public void EnsureId()
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                Id = GenerateId();
+            }
+        }
+
+        public static string GenerateId() => Guid.NewGuid().ToString("N");
 
         public string Name
         {
@@ -167,9 +212,31 @@ namespace Névjegyzék
     [Serializable]
     public class Note : INotifyPropertyChanged
     {
+        private string _id;
         private string _title;
         private string _description;
         private string _contactName;
+        private string _contactId;
+        private string _groupId;
+
+        public Note()
+        {
+            Id = GenerateId();
+        }
+
+        public string Id
+        {
+            get => _id;
+            set { _id = string.IsNullOrWhiteSpace(value) ? GenerateId() : value; OnPropertyChanged(); }
+        }
+
+        public void EnsureId()
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                Id = GenerateId();
+            }
+        }
 
         public string Title
         {
@@ -189,7 +256,21 @@ namespace Névjegyzék
             set { _contactName = value; OnPropertyChanged(); }
         }
 
+        public string ContactId
+        {
+            get => _contactId;
+            set { _contactId = value; OnPropertyChanged(); }
+        }
+
+        public string GroupId
+        {
+            get => _groupId;
+            set { _groupId = value; OnPropertyChanged(); }
+        }
+
         public override string ToString() => Title;
+
+        public static string GenerateId() => Guid.NewGuid().ToString("N");
 
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;

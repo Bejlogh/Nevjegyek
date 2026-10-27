@@ -119,6 +119,8 @@ namespace Névjegyzék
             {
                 var newNote = new Note();
                 vm.UpdateNoteModel(newNote);
+                newNote.ContactId = _selectedContact.Id;
+                newNote.ContactName = _selectedContact.Name;
 
                 SelectableNotes.Add(new SelectableNote { Note = newNote });
                 SaveChanges();
@@ -143,7 +145,6 @@ namespace Névjegyzék
                     SelectableNotes.Insert(0, temp);
                     SelectedSelectableNote = temp;
 
-                    MessageBox.Show("Sikeres módosítás!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

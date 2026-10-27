@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace Névjegyzék
         private string _contactPhone;
         private string _contactPosition;
         private string _contactAddress;
-        private string _contactBirthDate;
+        private DateTime? _contactBirthDate;
         private string _contactWebsite;
         private string _contactImagePath;
         private BitmapImage _contactImageSource;
@@ -30,7 +31,11 @@ namespace Névjegyzék
         public string ContactPhone { get => _contactPhone; set => SetProperty(ref _contactPhone, value); }
         public string ContactPosition { get => _contactPosition; set => SetProperty(ref _contactPosition, value); }
         public string ContactAddress { get => _contactAddress; set => SetProperty(ref _contactAddress, value); }
-        public string ContactBirthDate { get => _contactBirthDate; set => SetProperty(ref _contactBirthDate, value); }
+        public DateTime? ContactBirthDate
+        {
+            get => _contactBirthDate;
+            set => SetProperty(ref _contactBirthDate, value);
+        }
         public string ContactWebsite { get => _contactWebsite; set => SetProperty(ref _contactWebsite, value); }
         public string ContactImagePath { get => _contactImagePath; set => SetProperty(ref _contactImagePath, value); }
         public BitmapImage ContactImageSource
@@ -54,7 +59,7 @@ namespace Névjegyzék
                 _contactPhone = contact.Phone;
                 _contactPosition = contact.Position;
                 _contactAddress = contact.Address;
-                _contactBirthDate = contact.BirthDate;
+                _contactBirthDate = ParseBirthDate(contact.BirthDate);
                 _contactWebsite = contact.Website;
                 _contactImagePath = contact.ImagePath;
                 _contactImageSource = contact.ImageSource;
@@ -109,10 +114,39 @@ namespace Névjegyzék
             }
         }
 
+        private static DateTime? ParseBirthDate(string date)
+        {
+            if (string.IsNullOrWhiteSpace(date))
+            {
+                return null;
+            }
+
+            string[] formats =
+            {
+                "yyyy-MM-dd",
+                "yyyy.MM.dd",
+                "yyyy/MM/dd",
+                "yyyy-M-d",
+                "yyyy.M.d",
+                "yyyy/M/d"
+            };
+
+            if (DateTime.TryParseExact(date, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+            {
+                return parsedDate;
+            }
+
+            return DateTime.TryParse(date, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate)
+                ? parsedDate
+                : null;
+        }
+
+        private static string FormatBirthDate(DateTime? date) => date.HasValue ? date.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) : string.Empty;
+
         private bool NameMatch(string name) => !string.IsNullOrEmpty(name) && Regex.IsMatch(name, @"^[\p{L}\d\.\-\s]*$");
         private bool PhoneNumberMatch(string phone) => !string.IsNullOrEmpty(phone) && Regex.IsMatch(phone, @"^[0-9+]+$");
         private bool EmailMatch(string email) => string.IsNullOrEmpty(email) || Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-        private bool BirthDateMatch(string date) => string.IsNullOrEmpty(date) || Regex.IsMatch(date, @"^\d{4}[-\.]\d{2}[-\.]\d{2}\.?$");
+        private bool BirthDateMatch(DateTime? date) => !date.HasValue || date.Value <= DateTime.Today;
         private bool WebsiteMatch(string site) => string.IsNullOrEmpty(site) || Regex.IsMatch(site, @"^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[^\s]*)?$");
 
         private bool ValidateFields()
@@ -135,9 +169,9 @@ namespace Névjegyzék
             {
                 errors.Add("Nem megfelelő email cím formátum. Példa: valaki@pelda.hu");
             }
-            if (!string.IsNullOrWhiteSpace(ContactBirthDate) && !BirthDateMatch(ContactBirthDate))
+            if (!BirthDateMatch(ContactBirthDate))
             {
-                errors.Add("Nem megfelelő születési dátum formátum. Példa: 1999-12-31");
+                errors.Add("Nem megfelelő születési dátum formátum. Jövőbeli dátum nem elfogadható.");
             }
             if (!string.IsNullOrWhiteSpace(ContactWebsite) && !WebsiteMatch(ContactWebsite))
             {
@@ -180,7 +214,7 @@ namespace Névjegyzék
             contact.Phone = ContactPhone;
             contact.Position = ContactPosition;
             contact.Address = ContactAddress;
-            contact.BirthDate = ContactBirthDate;
+            contact.BirthDate = FormatBirthDate(ContactBirthDate);
             contact.Website = ContactWebsite;
             contact.ImagePath = ContactImagePath;
             contact.ImageSource = ContactImageSource;

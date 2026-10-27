@@ -184,7 +184,6 @@ namespace Névjegyzék
                     Groups.Insert(0, temp);
                     SelectedGroup = temp;
 
-                    MessageBox.Show("Sikeres módosítás!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
@@ -282,6 +281,8 @@ namespace Névjegyzék
             {
                 var newNote = new Note();
                 vm.UpdateNoteModel(newNote);
+                newNote.GroupId = SelectedGroup.Id;
+                newNote.ContactName = SelectedGroup.Name;
 
                 SelectableNotes.Add(new SelectableNote { Note = newNote });
                 SyncNotesToGroup();
@@ -306,7 +307,6 @@ namespace Névjegyzék
                     SelectableNotes.Insert(0, temp);
                     SelectedSelectableNote = temp;
 
-                    MessageBox.Show("Sikeres módosítás!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

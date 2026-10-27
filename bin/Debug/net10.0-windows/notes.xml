@@ -1,23 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Note>
-    <Title>wrwewrw</Title>
-    <Description>wrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrwwrw</Description>
-    <ContactName>fsfsfsdfsd</ContactName>
-  </Note>
-  <Note>
-    <Title>wrwerwerwe</Title>
-    <Description>syxxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvcccccccccccccccccccccccccccccccccxvccccccccccccccccccccccccccccccccc</Description>
-    <ContactName>fsfsfsdfsd</ContactName>
-  </Note>
-  <Note>
-    <Title>sdasdas</Title>
-    <Description>sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</Description>
-    <ContactName>fsfsfsdfsd</ContactName>
-  </Note>
-  <Note>
-    <Title>sadadsd</Title>
-    <Description>sdadasdasdsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</Description>
-    <ContactName>setetertert</ContactName>
-  </Note>
-</ArrayOfNote>
+<ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />

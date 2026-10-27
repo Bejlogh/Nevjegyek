@@ -39,7 +39,7 @@
                 <TextBox Text="{Binding ContactAddress, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
 
                 <Label Content="Születési dátum (ÉÉÉÉ-HH-NN):" Foreground="#555555" Padding="0,0,0,2"/>
-                <TextBox Text="{Binding ContactBirthDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
+                <DatePicker SelectedDate="{Binding ContactBirthDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
 
                 <Label Content="Webhely:" Foreground="#555555" Padding="0,0,0,2"/>
                 <TextBox Text="{Binding ContactWebsite, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>

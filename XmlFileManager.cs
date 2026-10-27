@@ -38,6 +38,55 @@ namespace Névjegyzék
                 MessageBoxImage.Warning);
         }
 
+        public static List<Note> LoadNotes()
+        {
+            if (!File.Exists(NotesFilePath))
+            {
+                return new List<Note>();
+            }
+
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Note>));
+                using (StreamReader reader = new StreamReader(NotesFilePath))
+                {
+                    return (List<Note>?)serializer.Deserialize(reader) ?? new List<Note>();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowXmlFileWarning(NotesFilePath, ex);
+                return new List<Note>();
+            }
+        }
+
+        public static void SaveNotes(IEnumerable<Note> notes)
+        {
+            var normalizedNotes = notes
+                .Where(n => n != null)
+                .GroupBy(n => n.Id)
+                .Select(g => g.First())
+                .ToList();
+
+            foreach (var note in normalizedNotes)
+            {
+                note.EnsureId();
+            }
+
+            try
+            {
+                XmlSerializer notesSerializer = new XmlSerializer(typeof(List<Note>));
+                using (StreamWriter writer = new StreamWriter(NotesFilePath))
+                {
+                    notesSerializer.Serialize(writer, normalizedNotes);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowXmlFileWarning(NotesFilePath, ex);
+            }
+        }
+
         public static List<Contact> ContactLoading()
         {
             List<Contact> contacts = new List<Contact>();
@@ -58,34 +107,24 @@ namespace Névjegyzék
                 }
             }
 
-            List<Note> notes = new List<Note>();
-            if (File.Exists(NotesFilePath))
-            {
-                try
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Note>));
-                    using (StreamReader reader = new StreamReader(NotesFilePath))
-                    {
-                        notes = (List<Note>?)serializer.Deserialize(reader) ?? new List<Note>();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ShowXmlFileWarning(NotesFilePath, ex);
-                    notes = new List<Note>();
-                }
-            }
+            List<Note> notes = LoadNotes();
 
             foreach (var contact in contacts)
             {
+                contact.EnsureId();
                 contact.Notes.Clear();
             }
 
             foreach (var note in notes)
             {
-                var contact = contacts.FirstOrDefault(c => c.Name == note.ContactName);
+                note.EnsureId();
+                var contact = !string.IsNullOrWhiteSpace(note.ContactId)
+                    ? contacts.FirstOrDefault(c => c.Id == note.ContactId)
+                    : contacts.FirstOrDefault(c => c.Name == note.ContactName);
                 if (contact != null)
                 {
+                    note.ContactId = contact.Id;
+                    note.ContactName = contact.Name;
                     contact.Notes.Add(note);
                 }
             }
@@ -109,28 +148,36 @@ namespace Névjegyzék
                 return;
             }
 
-            List<Note> allNotes = new List<Note>();
+            var groups = LoadGroups();
+            var allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+
             foreach (var contact in contacts)
             {
+                contact.EnsureId();
                 foreach (var note in contact.Notes)
                 {
+                    note.EnsureId();
+                    note.ContactId = contact.Id;
                     note.ContactName = contact.Name;
-                    allNotes.Add(note);
+                    note.GroupId = string.Empty;
+                    allNotes[note.Id] = note;
                 }
             }
 
-            try
+            foreach (var group in groups)
             {
-                XmlSerializer notesSerializer = new XmlSerializer(typeof(List<Note>));
-                using (StreamWriter writer = new StreamWriter(NotesFilePath))
+                group.EnsureId();
+                foreach (var note in group.Notes)
                 {
-                    notesSerializer.Serialize(writer, allNotes);
+                    note.EnsureId();
+                    note.GroupId = group.Id;
+                    note.ContactId = string.Empty;
+                    note.ContactName = string.Empty;
+                    allNotes[note.Id] = note;
                 }
             }
-            catch (Exception ex)
-            {
-                ShowXmlFileWarning(NotesFilePath, ex);
-            }
+
+            SaveNotes(allNotes.Values);
         }
 
         private static void ReleaseImageLocks(string imagePath)
@@ -280,7 +327,7 @@ namespace Névjegyzék
             }
             catch
             {
-                //wpf kép lock miatt probalkozhat a user tovabb
+
             }
         }
 
@@ -307,16 +354,32 @@ namespace Névjegyzék
             }
 
             var globalContacts = ContactLoading();
+            var notes = LoadNotes();
             foreach (var group in groups)
             {
+                group.EnsureId();
+                group.Notes.Clear();
                 for (int i = 0; i < group.Contacts.Count; i++)
                 {
                     var groupContact = group.Contacts[i];
-                    var freshContact = globalContacts.FirstOrDefault(c => c.Name == groupContact.Name && c.Phone == groupContact.Phone);
+                    if (string.IsNullOrWhiteSpace(groupContact.Id))
+                    {
+                        groupContact.EnsureId();
+                    }
+
+                    var freshContact = globalContacts.FirstOrDefault(c => c.Id == groupContact.Id)
+                        ?? globalContacts.FirstOrDefault(c => c.Name == groupContact.Name && c.Phone == groupContact.Phone);
                     if (freshContact != null)
                     {
                         group.Contacts[i] = freshContact;
                     }
+                }
+
+                foreach (var note in notes.Where(n => n.GroupId == group.Id))
+                {
+                    note.EnsureId();
+                    note.GroupId = group.Id;
+                    group.Notes.Add(note);
                 }
             }
 
@@ -325,6 +388,22 @@ namespace Névjegyzék
 
         public static void SaveGroups(List<ContactGroup> groups)
         {
+            foreach (var group in groups)
+            {
+                group.EnsureId();
+                foreach (var contact in group.Contacts)
+                {
+                    contact.EnsureId();
+                }
+                foreach (var note in group.Notes)
+                {
+                    note.EnsureId();
+                    note.GroupId = group.Id;
+                    note.ContactId = string.Empty;
+                    note.ContactName = string.Empty;
+                }
+            }
+
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<ContactGroup>));
@@ -337,6 +416,35 @@ namespace Névjegyzék
             {
                 ShowXmlFileWarning(GroupsFilePath, ex);
             }
+
+            var contacts = ContactLoading();
+            var allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var contact in contacts)
+            {
+                foreach (var note in contact.Notes)
+                {
+                    note.EnsureId();
+                    note.ContactId = contact.Id;
+                    note.ContactName = contact.Name;
+                    note.GroupId = string.Empty;
+                    allNotes[note.Id] = note;
+                }
+            }
+
+            foreach (var group in groups)
+            {
+                foreach (var note in group.Notes)
+                {
+                    note.EnsureId();
+                    note.GroupId = group.Id;
+                    note.ContactId = string.Empty;
+                    note.ContactName = string.Empty;
+                    allNotes[note.Id] = note;
+                }
+            }
+
+            SaveNotes(allNotes.Values);
         }
     }
 }
