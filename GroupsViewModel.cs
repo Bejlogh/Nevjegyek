@@ -107,6 +107,7 @@ namespace Névjegyzék
 
             foreach (var c in globalContacts.Where(x => !x.IsBlocked))
             {
+                c.LoadImageSource();
                 AvailableContacts.Add(new GroupSelectableContact { Contact = c, IsSelected = false });
             }
 

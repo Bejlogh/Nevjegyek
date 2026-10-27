@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
 namespace Névjegyzék
@@ -17,6 +19,7 @@ namespace Névjegyzék
         private string _contactBirthDate;
         private string _contactWebsite;
         private string _contactImagePath;
+        private BitmapImage _contactImageSource;
         private bool _isBlocked;
 
         public Window Window { get; set; }
@@ -30,6 +33,11 @@ namespace Névjegyzék
         public string ContactBirthDate { get => _contactBirthDate; set => SetProperty(ref _contactBirthDate, value); }
         public string ContactWebsite { get => _contactWebsite; set => SetProperty(ref _contactWebsite, value); }
         public string ContactImagePath { get => _contactImagePath; set => SetProperty(ref _contactImagePath, value); }
+        public BitmapImage ContactImageSource
+        {
+            get => _contactImageSource;
+            set => SetProperty(ref _contactImageSource, value);
+        }
         public bool IsBlocked { get => _isBlocked; set => SetProperty(ref _isBlocked, value); }
 
         public ICommand UploadImageCommand { get; }
@@ -49,6 +57,7 @@ namespace Névjegyzék
                 _contactBirthDate = contact.BirthDate;
                 _contactWebsite = contact.Website;
                 _contactImagePath = contact.ImagePath;
+                _contactImageSource = contact.ImageSource;
                 _isBlocked = contact.IsBlocked;
             }
 
@@ -69,18 +78,16 @@ namespace Névjegyzék
             {
                 try
                 {
-                    string imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
-                    if (!Directory.Exists(imagesDir))
-                    {
-                        Directory.CreateDirectory(imagesDir);
-                    }
-
+                    string imagesDir = XmlFileManager.GetImagesDirectoryPath();
                     string extension = Path.GetExtension(openFileDialog.FileName);
                     string newFileName = Guid.NewGuid().ToString() + extension;
                     string destinationPath = Path.Combine(imagesDir, newFileName);
 
                     File.Copy(openFileDialog.FileName, destinationPath, true);
                     ContactImagePath = destinationPath;
+                    var temp = new Contact { ImagePath = destinationPath };
+                    temp.LoadImageSource();
+                    ContactImageSource = temp.ImageSource;
                 }
                 catch (Exception ex)
                 {
@@ -91,7 +98,15 @@ namespace Névjegyzék
 
         private void DeleteImage()
         {
+            var imageToDelete = ContactImagePath;
             ContactImagePath = string.Empty;
+            ContactImageSource = null;
+
+            if (!string.IsNullOrWhiteSpace(imageToDelete))
+            {
+                var temp = new Contact { ImagePath = imageToDelete };
+                XmlFileManager.DeleteContactImage(temp);
+            }
         }
 
         private bool NameMatch(string name) => !string.IsNullOrEmpty(name) && Regex.IsMatch(name, @"^[\p{L}\d\.\-\s]*$");
@@ -102,16 +117,39 @@ namespace Névjegyzék
 
         private bool ValidateFields()
         {
-            if (string.IsNullOrWhiteSpace(ContactName) || string.IsNullOrEmpty(ContactPhone))
+            List<string> errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(ContactName) || string.IsNullOrWhiteSpace(ContactPhone))
             {
-                MessageBox.Show("Név és telefonszám megadása kötelező", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                errors.Add("Név és telefonszám megadása kötelező. Példa: Név: Kovács Anna, Telefonszám: +36123456789");
+            }
+            if (!string.IsNullOrWhiteSpace(ContactName) && !NameMatch(ContactName))
+            {
+                errors.Add("Nem megfelelő név formátum. Példa: Kovács Anna");
+            }
+            if (!string.IsNullOrWhiteSpace(ContactPhone) && !PhoneNumberMatch(ContactPhone))
+            {
+                errors.Add("Nem megfelelő telefonszám formátum. Példa: +36123456789");
+            }
+            if (!string.IsNullOrWhiteSpace(ContactEmail) && !EmailMatch(ContactEmail))
+            {
+                errors.Add("Nem megfelelő email cím formátum. Példa: valaki@pelda.hu");
+            }
+            if (!string.IsNullOrWhiteSpace(ContactBirthDate) && !BirthDateMatch(ContactBirthDate))
+            {
+                errors.Add("Nem megfelelő születési dátum formátum. Példa: 1999-12-31");
+            }
+            if (!string.IsNullOrWhiteSpace(ContactWebsite) && !WebsiteMatch(ContactWebsite))
+            {
+                errors.Add("Nem megfelelő webhely formátum. Példa: https://www.pelda.hu");
+            }
+
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, errors), "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-            if (!NameMatch(ContactName)) { MessageBox.Show("Nem megfelelő név formátum", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning); return false; }
-            if (!PhoneNumberMatch(ContactPhone)) { MessageBox.Show("Nem megfelelő telefonszám formátum", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning); return false; }
-            if (!EmailMatch(ContactEmail)) { MessageBox.Show("Nem megfelelő email cím formátum", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning); return false; }
-            if (!BirthDateMatch(ContactBirthDate)) { MessageBox.Show("Nem megfelelő születési dátum formátum (ÉÉÉÉ-HH-NN)", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning); return false; }
-            if (!WebsiteMatch(ContactWebsite)) { MessageBox.Show("Nem megfelelő webhely formátum", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning); return false; }
+
             return true;
         }
 
@@ -130,6 +168,13 @@ namespace Névjegyzék
 
         public void UpdateContactModel(Contact contact)
         {
+            if (contact == null)
+            {
+                return;
+            }
+
+            var oldImagePath = contact.ImagePath;
+
             contact.Name = ContactName;
             contact.Email = ContactEmail;
             contact.Phone = ContactPhone;
@@ -138,7 +183,14 @@ namespace Névjegyzék
             contact.BirthDate = ContactBirthDate;
             contact.Website = ContactWebsite;
             contact.ImagePath = ContactImagePath;
+            contact.ImageSource = ContactImageSource;
             contact.IsBlocked = IsBlocked;
+
+            if (!string.IsNullOrWhiteSpace(oldImagePath)
+                && !string.Equals(oldImagePath, ContactImagePath, StringComparison.OrdinalIgnoreCase))
+            {
+                XmlFileManager.DeleteContactImage(new Contact { ImagePath = oldImagePath });
+            }
         }
     }
 }

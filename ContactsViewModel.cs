@@ -53,6 +53,7 @@ namespace Névjegyzék
             var list = new ObservableCollection<SelectableContact>();
             foreach (var c in loaded)
             {
+                c.LoadImageSource();
                 list.Add(new SelectableContact { Contact = c });
             }
             Contacts = list;
@@ -118,9 +119,15 @@ namespace Névjegyzék
 
             if (MessageBox.Show($"Biztosan törölni szeretné a kiválasztott {toDelete.Count} névjegyet?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
+                SelectedContact = null;
+
                 foreach (var item in toDelete)
                 {
+                    var imageToDelete = item.Contact.ImagePath;
+                    item.Contact.ImagePath = string.Empty;
+                    item.Contact.ImageSource = null;
                     Contacts.Remove(item);
+                    XmlFileManager.DeleteContactImage(new Contact { ImagePath = imageToDelete });
                 }
                 SaveContacts();
 

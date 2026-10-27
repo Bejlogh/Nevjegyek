@@ -69,7 +69,12 @@ namespace Névjegyzék
         private void LoadContacts()
         {
             var loaded = XmlFileManager.ContactLoading();
-            Contacts = new ObservableCollection<Contact>(loaded.Where(x => !x.IsBlocked));
+            var contacts = new ObservableCollection<Contact>(loaded.Where(x => !x.IsBlocked));
+            foreach (var contact in contacts)
+            {
+                contact.LoadImageSource();
+            }
+            Contacts = contacts;
         }
 
         private void LoadNotesForSelectedContact()

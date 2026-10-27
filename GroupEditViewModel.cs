@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Névjegyzék
@@ -26,11 +28,28 @@ namespace Névjegyzék
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        private void Save()
+        private bool ValidateFields()
         {
+            List<string> errors = new List<string>();
+
             if (string.IsNullOrWhiteSpace(GroupName))
             {
-                MessageBox.Show("A csoport nevét meg kell adni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                errors.Add("A csoport nevét meg kell adni!");
+            }
+
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, errors), "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Save()
+        {
+            if (!ValidateFields())
+            {
                 return;
             }
 

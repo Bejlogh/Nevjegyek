@@ -32,3 +32,4 @@ C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\NoteEditWind
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\NoteEditWindow.g.cs
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\GroupEditWindow.baml
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\GroupEditWindow.g.cs
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\Névjegyzék.sourcelink.json

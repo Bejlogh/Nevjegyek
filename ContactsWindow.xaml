@@ -30,7 +30,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsSelectedForDelete, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,6,0"/>
-                                <Image Source="{Binding Contact.ImagePath}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <Image Source="{Binding Contact.ImageSource}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock x:Name="NameTxt" Text="{Binding Contact.Name}" VerticalAlignment="Center"/>
                                 <TextBlock x:Name="BlockedTxt" Text=" (Letiltva)" Foreground="Gray" VerticalAlignment="Center" Visibility="Collapsed" Margin="4,0,0,0"/>
                             </StackPanel>
@@ -58,7 +58,7 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="8">
                         <Border Width="80" Height="80" Background="#E0E0E0" CornerRadius="40" HorizontalAlignment="Center" ClipToBounds="True" Margin="0,0,0,16">
-                            <Image Source="{Binding SelectedContact.Contact.ImagePath}" Stretch="UniformToFill"/>
+                            <Image Source="{Binding SelectedContact.Contact.ImageSource}" Stretch="UniformToFill"/>
                         </Border>
 
                         <TextBlock Text="Név:" FontWeight="Bold" Foreground="#555555"/>

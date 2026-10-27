@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Contact>
-    <Name>teszt2</Name>
-    <Email />
-    <Phone>232313</Phone>
-    <Position>CEO</Position>
-    <Address>Balatonfüred</Address>
-    <BirthDate>1990.01.23.</BirthDate>
-    <Website>valami.hu</Website>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\bin\Debug\net10.0-windows\Images\510b5184-0716-49bf-aafb-fe340ab3669c.jpg</ImagePath>
-    <IsBlocked>false</IsBlocked>
-  </Contact>
-  <Contact>
-    <Name>dfgdfgdgfdg</Name>
-    <Phone>12321312</Phone>
-    <IsBlocked>false</IsBlocked>
-  </Contact>
-  <Contact>
     <Name>fsfsfsdfsd</Name>
     <Email />
     <Phone>1232313</Phone>
@@ -24,10 +8,12 @@
     <Address>kuzfguk</Address>
     <BirthDate />
     <Website />
+    <ImagePath />
     <IsBlocked>false</IsBlocked>
   </Contact>
   <Contact>
-    <Name>setetertert</Na    <Email>sfgh@dgadfg.cdfs</Email>
+    <Name>setetertert</Name>
+    <Email>sfgh@dgadfg.cdfs</Email>
     <Phone>+363034567890</Phone>
     <IsBlocked>false</IsBlocked>
   </Contact>

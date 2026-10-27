@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Névjegyzék
@@ -38,17 +40,38 @@ namespace Névjegyzék
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        private void Save()
+        private bool ValidateFields()
         {
+            List<string> errors = new List<string>();
+
             if (string.IsNullOrWhiteSpace(NoteTitle))
             {
-                MessageBox.Show("A jegyzet címét meg kell adni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                errors.Add("A jegyzet címét meg kell adni!");
             }
 
-            if(NoteDescription.Length < 30)
+            if (string.IsNullOrWhiteSpace(NoteDescription))
             {
-                MessageBox.Show("Legalább 30 karakter hosszú szöveg kell!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                errors.Add("A jegyzet szövegét meg kell adni!");
+            }
+
+            if (!string.IsNullOrWhiteSpace(NoteDescription) && NoteDescription.Length < 30)
+            {
+                errors.Add("Legalább 30 karakter hosszú szöveg kell!");
+            }
+
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, errors), "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Save()
+        {
+            if (!ValidateFields())
+            {
                 return;
             }
 

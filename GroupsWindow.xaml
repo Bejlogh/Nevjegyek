@@ -46,7 +46,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                                <Image Source="{Binding Contact.ImagePath}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <Image Source="{Binding Contact.ImageSource}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock Text="{Binding Contact.Name}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
@@ -69,7 +69,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                                <Image Source="{Binding Contact.ImagePath}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <Image Source="{Binding Contact.ImageSource}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock Text="{Binding Contact.Name}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>

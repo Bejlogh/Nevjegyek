@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 
 namespace Névjegyzék
@@ -101,6 +103,35 @@ namespace Névjegyzék
         {
             get => _imagePath;
             set { _imagePath = value; OnPropertyChanged(); }
+        }
+
+        [XmlIgnore]
+        public BitmapImage ImageSource { get; set; }
+
+        public void LoadImageSource()
+        {
+            ImageSource = null;
+            if (string.IsNullOrWhiteSpace(ImagePath) || !File.Exists(ImagePath))
+            {
+                return;
+            }
+
+            try
+            {
+                byte[] imageBytes = File.ReadAllBytes(ImagePath);
+                using var memoryStream = new MemoryStream(imageBytes);
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = memoryStream;
+                bitmap.EndInit();
+                bitmap.Freeze();
+                ImageSource = bitmap;
+            }
+            catch
+            {
+                ImageSource = null;
+            }
         }
 
         public bool IsBlocked

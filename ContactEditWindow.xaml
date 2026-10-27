@@ -15,7 +15,7 @@
                 <Label Content="Profilkép:" Foreground="#555555" Padding="0,0,0,2"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8" HorizontalAlignment="Center">
                     <Border Width="70" Height="70" Background="#E0E0E0" CornerRadius="35" ClipToBounds="True" Margin="0,0,8,0">
-                        <Image Source="{Binding ContactImagePath}" Stretch="UniformToFill"/>
+                        <Image Source="{Binding ContactImageSource}" Stretch="UniformToFill"/>
                     </Border>
                     <StackPanel VerticalAlignment="Center">
                         <Button Content="Feltöltés" Command="{Binding UploadImageCommand}" Width="90" Height="26" Margin="0,0,0,4"/>

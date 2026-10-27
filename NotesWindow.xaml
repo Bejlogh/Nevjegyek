@@ -22,7 +22,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding ImagePath}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <Image Source="{Binding ImageSource}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
