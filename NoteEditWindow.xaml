@@ -1,8 +1,8 @@
 ﻿<Window x:Class="Névjegyzék.NoteEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Jegyzet Szerkesztése" Height="380" Width="400"
-        Background="#F3F3F3" WindowStartupLocation="CenterScreen">
+        Title="Jegyzet Szerkesztése" Height="380" Width="400" MinWidth="400" MinHeight="380"
+        Background="#F3F3F3" WindowStartupLocation="CenterScreen"> 
 
     <Grid Margin="12">
         <Grid.RowDefinitions>

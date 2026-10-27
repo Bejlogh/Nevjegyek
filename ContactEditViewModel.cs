@@ -146,7 +146,16 @@ namespace Névjegyzék
         private bool NameMatch(string name) => !string.IsNullOrEmpty(name) && Regex.IsMatch(name, @"^[\p{L}\d\.\-\s]*$");
         private bool PhoneNumberMatch(string phone) => !string.IsNullOrEmpty(phone) && Regex.IsMatch(phone, @"^[0-9+]+$");
         private bool EmailMatch(string email) => string.IsNullOrEmpty(email) || Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-        private bool BirthDateMatch(DateTime? date) => !date.HasValue || date.Value <= DateTime.Today;
+        private bool BirthDateMatch(DateTime? date)
+        {
+            if (!date.HasValue)
+            {
+                return true;
+            }
+
+            var minimumBirthDate = DateTime.Today.AddYears(-18);
+            return date.Value <= DateTime.Today && date.Value <= minimumBirthDate;
+        }
         private bool WebsiteMatch(string site) => string.IsNullOrEmpty(site) || Regex.IsMatch(site, @"^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[^\s]*)?$");
 
         private bool ValidateFields()
@@ -171,7 +180,7 @@ namespace Névjegyzék
             }
             if (!BirthDateMatch(ContactBirthDate))
             {
-                errors.Add("Nem megfelelő születési dátum formátum. Jövőbeli dátum nem elfogadható.");
+                errors.Add("A születési dátumnak legalább 18 éves kort kell jelentenie.");
             }
             if (!string.IsNullOrWhiteSpace(ContactWebsite) && !WebsiteMatch(ContactWebsite))
             {

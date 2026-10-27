@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Contact>
-    <Id>51036d243166475ba332f9ca488b033e</Id>
-    <Name>teszt</Name>
-    <Email>teszt@teszt.hu</Email>
-    <Phone>10101010</Phone>
-    <BirthDate>2026-10-06</BirthDate>
-    <Website>teszt.com</Website>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\aeb38a16-07e5-483f-9c1f-4d964c73d942.jpg</ImagePath>
+    <Id>9f2c5eb4c66e4869925b6c51a57b99b6</Id>
+    <Name>fsfdfsdfsf</Name>
+    <Phone>01010101</Phone>
+    <BirthDate>2008-10-27</BirthDate>
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\f17a3b9d-e3b9-4cef-abb1-e9987c6ffd34.jpg</ImagePath>
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>0547c6d2b0334d7382b1066f6d3f6b2c</Id>
+    <Name>dfasdasdas</Name>
+    <Phone>101010101010</Phone>
+    <BirthDate>2004-02-18</BirthDate>
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\bdfb5761-557a-410b-99ce-995bc814d0e5.jpg</ImagePath>
     <IsBlocked>false</IsBlocked>
   </Contact>
 </ArrayOfContact>

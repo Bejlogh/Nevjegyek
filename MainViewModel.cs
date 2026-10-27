@@ -24,20 +24,36 @@ namespace Névjegyzék
 
         private void OpenContacts()
         {
-            var window = System.Windows.Application.Current.Windows.OfType<ContactsWindow>().FirstOrDefault() ?? new ContactsWindow();
-            window.Show();
+            OpenWindowIfNeeded<ContactsWindow>();
         }
 
         private void OpenNotes()
         {
-            var window = System.Windows.Application.Current.Windows.OfType<NotesWindow>().FirstOrDefault() ?? new NotesWindow();
-            window.Show();
+            OpenWindowIfNeeded<NotesWindow>();
         }
 
         private void OpenGroups()
         {
-            var window = System.Windows.Application.Current.Windows.OfType<GroupsWindow>().FirstOrDefault() ?? new GroupsWindow();
-            window.Show();
+            OpenWindowIfNeeded<GroupsWindow>();
+        }
+
+        private void OpenWindowIfNeeded<T>() where T : Window, new()
+        {
+            var window = System.Windows.Application.Current.Windows.OfType<T>().FirstOrDefault() ?? new T();
+
+            if (window.WindowState == WindowState.Minimized)
+            {
+                window.WindowState = WindowState.Normal;
+            }
+
+            if (window.IsVisible == false)
+            {
+                window.Show();
+            }
+
+            window.Activate();
+            window.Topmost = true;
+            window.Topmost = false;
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Névjegyzék")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b5210809848a0893d6b44f25cb52e791a22f98f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+611ae19b9a311a6afcbd52931f2495b4b7407855")]
 [assembly: System.Reflection.AssemblyProductAttribute("Névjegyzék")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Névjegyzék")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

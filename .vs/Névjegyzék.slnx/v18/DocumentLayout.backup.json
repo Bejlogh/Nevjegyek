@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\xmlfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:xmlfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\groupsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:groupsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ContactEditViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
-              "RelativeDocumentMoniker": "ContactEditViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
-              "RelativeToolTip": "ContactEditViewModel.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T09:57:13.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NotesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NotesViewModel.cs",
-              "RelativeDocumentMoniker": "NotesViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NotesViewModel.cs",
-              "RelativeToolTip": "NotesViewModel.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAAAHkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T09:50:54.5Z",
+              "DocumentIndex": 1,
+              "Title": "ContactEditWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditWindow.xaml",
+              "RelativeDocumentMoniker": "ContactEditWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditWindow.xaml",
+              "RelativeToolTip": "ContactEditWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-27T13:51:01.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Models.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Models.cs",
-              "RelativeDocumentMoniker": "Models.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Models.cs",
-              "RelativeToolTip": "Models.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAlwDUAAAAJAAAAAAAAAA==",
+              "Title": "ContactEditViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
+              "RelativeDocumentMoniker": "ContactEditViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
+              "RelativeToolTip": "ContactEditViewModel.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAASwO8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T09:37:42.625Z",
+              "WhenOpened": "2026-10-27T13:51:01.083Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "XmlFileManager.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\XmlFileManager.cs",
-              "RelativeDocumentMoniker": "XmlFileManager.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\XmlFileManager.cs",
-              "RelativeToolTip": "XmlFileManager.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAowMEBAAABAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "MainViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\MainViewModel.cs",
+              "RelativeToolTip": "MainViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T09:33:03.46Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GroupsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupsViewModel.cs",
-              "RelativeDocumentMoniker": "GroupsViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupsViewModel.cs",
-              "RelativeToolTip": "GroupsViewModel.cs",
-              "ViewState": "AgIAABIBAAAAAAAAAAAYwDABAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T09:23:19.925Z",
+              "WhenOpened": "2026-10-27T13:32:39.972Z",
               "EditorCaption": ""
             }
           ]
