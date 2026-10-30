@@ -41,7 +41,15 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ListBox ItemsSource="{Binding GroupSelectableContacts}" Margin="0,0,0,6" Background="White" BorderBrush="#E0E0E0">
+                <ListBox x:Name="GroupMembersList"
+                         ItemsSource="{Binding GroupSelectableContacts}"
+                         Margin="0,0,0,6"
+                         Background="White"
+                         BorderBrush="#E0E0E0"
+                         AllowDrop="True"
+                         DragEnter="GroupMembersList_DragEnter"
+                         DragOver="GroupMembersList_DragOver"
+                         Drop="GroupMembersList_Drop">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -64,11 +72,24 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ListBox ItemsSource="{Binding AvailableContacts}" Margin="0,0,0,6" Background="White" BorderBrush="#E0E0E0">
+                <ListBox x:Name="AvailableContactsList"
+                         ItemsSource="{Binding AvailableContacts}"
+                         Margin="0,0,0,6"
+                         Background="White"
+                         BorderBrush="#E0E0E0"
+                         PreviewMouseLeftButtonDown="AvailableContactsList_PreviewMouseLeftButtonDown"
+                         PreviewMouseLeftButtonUp="AvailableContactsList_PreviewMouseLeftButtonUp"
+                         PreviewMouseMove="AvailableContactsList_PreviewMouseMove"
+                         Focusable="False">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,4,0"
+                                          Focusable="False"
+                                          PreviewMouseLeftButtonDown="AvailableContactCheckBox_PreviewMouseLeftButtonDown"
+                                          PreviewMouseLeftButtonUp="AvailableContactCheckBox_PreviewMouseLeftButtonUp"/>
                                 <Image Source="{Binding Contact.ImageSource}" Width="20" Height="20" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock Text="{Binding Contact.Name}" VerticalAlignment="Center"/>
                             </StackPanel>

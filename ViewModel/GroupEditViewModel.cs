@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Névjegyzék
 {
-    public class GroupEditViewModel : ViewModelBase
+    public class GroupEditViewModel : ViewModelBase, IDataErrorInfo
     {
         private string _groupName;
 
@@ -16,6 +16,21 @@ namespace Névjegyzék
         {
             get => _groupName;
             set => SetProperty(ref _groupName, value);
+        }
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == nameof(GroupName) && string.IsNullOrWhiteSpace(GroupName))
+                {
+                    return "A csoport nevét meg kell adni!";
+                }
+
+                return null;
+            }
         }
 
         public ICommand SaveCommand { get; }
@@ -30,20 +45,7 @@ namespace Névjegyzék
 
         private bool ValidateFields()
         {
-            List<string> errors = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(GroupName))
-            {
-                errors.Add("A csoport nevét meg kell adni!");
-            }
-
-            if (errors.Count > 0)
-            {
-                MessageBox.Show(string.Join(Environment.NewLine, errors), "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
-            return true;
+            return string.IsNullOrWhiteSpace(this[nameof(GroupName)]) == false;
         }
 
         private void Save()

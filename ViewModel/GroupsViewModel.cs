@@ -155,8 +155,22 @@ namespace Névjegyzék
         private void OpenAddGroupWindow()
         {
             var vm = new GroupEditViewModel();
-            var win = new GroupEditWindow(vm);
-            win.ShowDialog();
+            var win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
+            win.SetViewModel(vm);
+
+            if (win.WindowState == WindowState.Minimized)
+            {
+                win.WindowState = WindowState.Normal;
+            }
+
+            if (!win.IsVisible)
+            {
+                win.ShowDialog();
+            }
+            else
+            {
+                win.Activate();
+            }
 
             if (vm.IsSaved)
             {
@@ -171,8 +185,22 @@ namespace Névjegyzék
             if (SelectedGroup != null)
             {
                 var vm = new GroupEditViewModel(SelectedGroup.Name);
-                var win = new GroupEditWindow(vm);
-                win.ShowDialog();
+                var win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
+                win.SetViewModel(vm);
+
+                if (win.WindowState == WindowState.Minimized)
+                {
+                    win.WindowState = WindowState.Normal;
+                }
+
+                if (!win.IsVisible)
+                {
+                    win.ShowDialog();
+                }
+                else
+                {
+                    win.Activate();
+                }
 
                 if (vm.IsSaved)
                 {
@@ -211,6 +239,44 @@ namespace Névjegyzék
             }
         }
 
+        public void AddContactsToSelectedGroup(IEnumerable<Contact> contacts)
+        {
+            if (SelectedGroup == null)
+            {
+                return;
+            }
+
+            var contactsToAdd = contacts?.Where(c => c != null && !c.IsBlocked).ToList() ?? new List<Contact>();
+            if (contactsToAdd.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var contact in contactsToAdd)
+            {
+                if (!SelectedGroup.Contacts.Any(c => c.Name == contact.Name && c.Phone == contact.Phone))
+                {
+                    SelectedGroup.Contacts.Add(contact);
+                }
+            }
+
+            foreach (var item in AvailableContacts.ToList())
+            {
+                item.IsSelected = false;
+            }
+
+            SaveData();
+            UpdateGroupSelectableContacts();
+        }
+
+        public void ClearAvailableContactSelection()
+        {
+            foreach (var item in AvailableContacts.ToList())
+            {
+                item.IsSelected = false;
+            }
+        }
+
         private void AddSelectedContacts()
         {
             if (SelectedGroup == null)
@@ -226,17 +292,12 @@ namespace Névjegyzék
                 return;
             }
 
+            AddContactsToSelectedGroup(selectedItems.Select(x => x.Contact));
+
             foreach (var item in selectedItems)
             {
-                if (!item.Contact.IsBlocked && !SelectedGroup.Contacts.Any(c => c.Name == item.Contact.Name && c.Phone == item.Contact.Phone))
-                {
-                    SelectedGroup.Contacts.Add(item.Contact);
-                }
                 item.IsSelected = false;
             }
-
-            SaveData();
-            UpdateGroupSelectableContacts();
         }
 
         private void RemoveSelectedContactsFromGroup()
@@ -274,8 +335,22 @@ namespace Névjegyzék
             }
 
             var vm = new NoteEditViewModel();
-            var win = new NoteEditWindow(vm);
-            win.ShowDialog();
+            var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+            win.SetViewModel(vm);
+
+            if (win.WindowState == WindowState.Minimized)
+            {
+                win.WindowState = WindowState.Normal;
+            }
+
+            if (!win.IsVisible)
+            {
+                win.ShowDialog();
+            }
+            else
+            {
+                win.Activate();
+            }
 
             if (vm.IsSaved)
             {
@@ -294,8 +369,22 @@ namespace Névjegyzék
             if (SelectedSelectableNote?.Note != null)
             {
                 var vm = new NoteEditViewModel(SelectedSelectableNote.Note);
-                var win = new NoteEditWindow(vm);
-                win.ShowDialog();
+                var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+                win.SetViewModel(vm);
+
+                if (win.WindowState == WindowState.Minimized)
+                {
+                    win.WindowState = WindowState.Normal;
+                }
+
+                if (!win.IsVisible)
+                {
+                    win.ShowDialog();
+                }
+                else
+                {
+                    win.Activate();
+                }
 
                 if (vm.IsSaved)
                 {

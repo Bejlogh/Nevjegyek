@@ -3,6 +3,46 @@
   <ContactGroup>
     <Id>210f23a7f57e428bbded8f4e2377cce9</Id>
     <Name>teszt1</Name>
-    <Contacts />
+    <Contacts>
+      <Contact>
+        <Id>51a31ff17bd14660beef913ad752d88b</Id>
+        <Name>teszt1</Name>
+        <Email>valami@teszt.hu</Email>
+        <Phone>01234332323</Phone>
+        <BirthDate />
+        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\59dc7708-52cc-4c19-ad3c-38cc8aabc463.jpg</ImagePath>
+        <IsBlocked>false</IsBlocked>
+      </Contact>
+      <Contact>
+        <Id>55e24b62ca5348609183716b47a4f327</Id>
+        <Name>teszt2</Name>
+        <Phone>11111111</Phone>
+        <BirthDate>2006-10-15</BirthDate>
+        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\2754701a-1e53-4e92-9593-b6238e938331.jpg</ImagePath>
+        <IsBlocked>false</IsBlocked>
+      </Contact>
+    </Contacts>
+  </ContactGroup>
+  <ContactGroup>
+    <Id>5e5aba655232436997a392e6687bc64c</Id>
+    <Name>teszt2</Name>
+    <Contacts>
+      <Contact>
+        <Id>fdfe1e2f61bb46a28e4f96f12f917e03</Id>
+        <Name>teszt3</Name>
+        <Phone>3445676868678</Phone>
+        <BirthDate>1985-07-11</BirthDate>
+        <Website>aaaaa.hu</Website>
+        <IsBlocked>false</IsBlocked>
+      </Contact>
+      <Contact>
+        <Id>8782c4ae203a4e18b0b21b8ca0139357</Id>
+        <Name>teszt5</Name>
+        <Phone>21222222</Phone>
+        <BirthDate />
+        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\d9db9d2a-8438-4f01-9906-7fbacfea3a7b.jpg</ImagePath>
+        <IsBlocked>false</IsBlocked>
+      </Contact>
+    </Contacts>
   </ContactGroup>
 </ArrayOfContactGroup>

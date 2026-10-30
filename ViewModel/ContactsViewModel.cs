@@ -160,8 +160,23 @@ namespace Névjegyzék
                 isDuplicateName: name => HasDuplicateName(name),
                 isDuplicateEmail: email => HasDuplicateEmail(email),
                 isDuplicatePhone: phone => HasDuplicatePhone(phone));
-            var win = new ContactEditWindow(vm);
-            win.ShowDialog();
+
+            var win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
+            win.SetViewModel(vm);
+
+            if (win.WindowState == WindowState.Minimized)
+            {
+                win.WindowState = WindowState.Normal;
+            }
+
+            if (!win.IsVisible)
+            {
+                win.ShowDialog();
+            }
+            else
+            {
+                win.Activate();
+            }
 
             if (vm.IsSaved)
             {
@@ -183,8 +198,23 @@ namespace Névjegyzék
                     name => HasDuplicateName(name, SelectedContact.Contact),
                     email => HasDuplicateEmail(email, SelectedContact.Contact),
                     phone => HasDuplicatePhone(phone, SelectedContact.Contact));
-                var win = new ContactEditWindow(vm);
-                win.ShowDialog();
+
+                var win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
+                win.SetViewModel(vm);
+
+                if (win.WindowState == WindowState.Minimized)
+                {
+                    win.WindowState = WindowState.Normal;
+                }
+
+                if (!win.IsVisible)
+                {
+                    win.ShowDialog();
+                }
+                else
+                {
+                    win.Activate();
+                }
 
                 if (vm.IsSaved)
                 {
@@ -198,6 +228,229 @@ namespace Névjegyzék
                 MessageBox.Show("Válasszon ki egy névjegyet a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void DeleteSelectedContacts()
         {

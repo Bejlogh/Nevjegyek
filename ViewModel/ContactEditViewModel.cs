@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -10,7 +11,7 @@ using Microsoft.Win32;
 
 namespace Névjegyzék
 {
-    public class ContactEditViewModel : ViewModelBase
+    public class ContactEditViewModel : ViewModelBase, IDataErrorInfo
     {
         private string _contactName;
         private string _contactEmail;
@@ -25,6 +26,74 @@ namespace Névjegyzék
         private readonly Func<string, bool> _isDuplicateName;
         private readonly Func<string, bool> _isDuplicateEmail;
         private readonly Func<string, bool> _isDuplicatePhone;
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(ContactName):
+                        if (string.IsNullOrWhiteSpace(ContactName))
+                        {
+                            return "Név megadása kötelező.";
+                        }
+                        if (!NameMatch(ContactName))
+                        {
+                            return "Nem megfelelő név formátum. Példa: Kovács Anna";
+                        }
+                        if (_isDuplicateName?.Invoke(ContactName) == true)
+                        {
+                            return "Már létezik ilyen nevű névjegy!";
+                        }
+                        break;
+
+                    case nameof(ContactPhone):
+                        if (string.IsNullOrWhiteSpace(ContactPhone))
+                        {
+                            return "Telefonszám megadása kötelező.";
+                        }
+                        if (!PhoneNumberMatch(ContactPhone))
+                        {
+                            return "Nem megfelelő telefonszám formátum. Példa: +36123456789";
+                        }
+                        if (_isDuplicatePhone?.Invoke(ContactPhone) == true)
+                        {
+                            return "Ez a telefonszám már egy másik névjegynél szerepel!";
+                        }
+                        break;
+
+                    case nameof(ContactEmail):
+                        if (!string.IsNullOrWhiteSpace(ContactEmail) && !EmailMatch(ContactEmail))
+                        {
+                            return "Nem megfelelő email cím formátum. Példa: valaki@pelda.hu";
+                        }
+                        if (!string.IsNullOrWhiteSpace(ContactEmail) && _isDuplicateEmail?.Invoke(ContactEmail) == true)
+                        {
+                            return "Ez az email cím már egy másik névjegynél szerepel!";
+                        }
+                        break;
+
+                    case nameof(ContactBirthDate):
+                        if (!BirthDateMatch(ContactBirthDate))
+                        {
+                            return "A születési dátumnak legalább 18 éves kort kell jelentenie.";
+                        }
+                        break;
+
+                    case nameof(ContactWebsite):
+                        if (!string.IsNullOrWhiteSpace(ContactWebsite) && !WebsiteMatch(ContactWebsite))
+                        {
+                            return "Nem megfelelő webhely formátum. Példa: https://www.pelda.hu";
+                        }
+                        break;
+                }
+
+                return null;
+            }
+        }
 
         public Window Window { get; set; }
         public bool IsSaved { get; private set; } = false;
@@ -83,6 +152,40 @@ namespace Névjegyzék
             CancelCommand = new RelayCommand(Cancel);
         }
 
+        public void UploadImageFromFile(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+            {
+                return;
+            }
+
+            string extension = Path.GetExtension(filePath);
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".bmp" };
+
+            if (Array.IndexOf(allowedExtensions, extension?.ToLowerInvariant()) < 0)
+            {
+                MessageBox.Show("Kérjük, képfájlt töltsön fel (.jpg, .jpeg, .png, .bmp).", "Érvénytelen fájl", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                string imagesDir = XmlFileManager.GetImagesDirectoryPath();
+                string newFileName = Guid.NewGuid().ToString() + extension;
+                string destinationPath = Path.Combine(imagesDir, newFileName);
+
+                File.Copy(filePath, destinationPath, true);
+                ContactImagePath = destinationPath;
+                var temp = new Contact { ImagePath = destinationPath };
+                temp.LoadImageSource();
+                ContactImageSource = temp.ImageSource;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba a kép feltöltése közben: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void UploadImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -92,24 +195,20 @@ namespace Névjegyzék
 
             if (openFileDialog.ShowDialog() == true)
             {
-                try
-                {
-                    string imagesDir = XmlFileManager.GetImagesDirectoryPath();
-                    string extension = Path.GetExtension(openFileDialog.FileName);
-                    string newFileName = Guid.NewGuid().ToString() + extension;
-                    string destinationPath = Path.Combine(imagesDir, newFileName);
-
-                    File.Copy(openFileDialog.FileName, destinationPath, true);
-                    ContactImagePath = destinationPath;
-                    var temp = new Contact { ImagePath = destinationPath };
-                    temp.LoadImageSource();
-                    ContactImageSource = temp.ImageSource;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Hiba a kép feltöltése közben: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                UploadImageFromFile(openFileDialog.FileName);
             }
+        }
+
+        public bool IsSupportedImageFile(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return false;
+            }
+
+            string extension = Path.GetExtension(filePath);
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".bmp" };
+            return Array.IndexOf(allowedExtensions, extension?.ToLowerInvariant()) >= 0;
         }
 
         private void DeleteImage()
@@ -171,49 +270,22 @@ namespace Névjegyzék
 
         private bool ValidateFields()
         {
-            List<string> errors = new List<string>();
+            var propertyNames = new[]
+            {
+                nameof(ContactName),
+                nameof(ContactPhone),
+                nameof(ContactEmail),
+                nameof(ContactBirthDate),
+                nameof(ContactWebsite)
+            };
 
-            if (string.IsNullOrWhiteSpace(ContactName) || string.IsNullOrWhiteSpace(ContactPhone))
+            foreach (var propertyName in propertyNames)
             {
-                errors.Add("Név és telefonszám megadása kötelező. Példa: Név: Kovács Anna, Telefonszám: +36123456789");
-            }
-            if (!string.IsNullOrWhiteSpace(ContactName) && !NameMatch(ContactName))
-            {
-                errors.Add("Nem megfelelő név formátum. Példa: Kovács Anna");
-            }
-            else if (!string.IsNullOrWhiteSpace(ContactName) && _isDuplicateName?.Invoke(ContactName) == true)
-            {
-                errors.Add("Már létezik ilyen nevű névjegy!");
-            }
-            if (!string.IsNullOrWhiteSpace(ContactPhone) && !PhoneNumberMatch(ContactPhone))
-            {
-                errors.Add("Nem megfelelő telefonszám formátum. Példa: +36123456789");
-            }
-            else if (!string.IsNullOrWhiteSpace(ContactPhone) && _isDuplicatePhone?.Invoke(ContactPhone) == true)
-            {
-                errors.Add("Ez a telefonszám már egy másik névjegynél szerepel!");
-            }
-            if (!string.IsNullOrWhiteSpace(ContactEmail) && !EmailMatch(ContactEmail))
-            {
-                errors.Add("Nem megfelelő email cím formátum. Példa: valaki@pelda.hu");
-            }
-            else if (!string.IsNullOrWhiteSpace(ContactEmail) && _isDuplicateEmail?.Invoke(ContactEmail) == true)
-            {
-                errors.Add("Ez az email cím már egy másik névjegynél szerepel!");
-            }
-            if (!BirthDateMatch(ContactBirthDate))
-            {
-                errors.Add("A születési dátumnak legalább 18 éves kort kell jelentenie.");
-            }
-            if (!string.IsNullOrWhiteSpace(ContactWebsite) && !WebsiteMatch(ContactWebsite))
-            {
-                errors.Add("Nem megfelelő webhely formátum. Példa: https://www.pelda.hu");
-            }
-
-            if (errors.Count > 0)
-            {
-                MessageBox.Show(string.Join(Environment.NewLine, errors), "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                var error = this[propertyName];
+                if (!string.IsNullOrWhiteSpace(error))
+                {
+                    return false;
+                }
             }
 
             return true;

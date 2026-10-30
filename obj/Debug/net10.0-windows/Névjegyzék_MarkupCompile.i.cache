@@ -9,12 +9,12 @@ Névjegyzék
 none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\Tanulo\source\repos\Névjegyzék\App.xaml
-7-420719522
 
-231296949313
+8956449018
+
+2479418265
 206-155403781
-ContactEditWindow.xaml;ContactsWindow.xaml;GroupEditWindow.xaml;GroupsWindow.xaml;MainWindow.xaml;NoteEditWindow.xaml;NotesWindow.xaml;
+UI\App.xaml;UI\ContactEditWindow.xaml;UI\ContactsWindow.xaml;UI\GroupEditWindow.xaml;UI\GroupsWindow.xaml;UI\MainWindow.xaml;UI\NoteEditWindow.xaml;UI\NotesWindow.xaml;
 
-False
+True
 

@@ -119,8 +119,22 @@ namespace Névjegyzék
             }
 
             var vm = new NoteEditViewModel(isDuplicateTitle: title => HasDuplicateTitle(title));
-            var win = new NoteEditWindow(vm);
-            win.ShowDialog();
+            var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+            win.SetViewModel(vm);
+
+            if (win.WindowState == WindowState.Minimized)
+            {
+                win.WindowState = WindowState.Normal;
+            }
+
+            if (!win.IsVisible)
+            {
+                win.ShowDialog();
+            }
+            else
+            {
+                win.Activate();
+            }
 
             if (vm.IsSaved)
             {
@@ -141,8 +155,23 @@ namespace Névjegyzék
                 var vm = new NoteEditViewModel(
                     SelectedSelectableNote.Note,
                     title => HasDuplicateTitle(title, SelectedSelectableNote.Note));
-                var win = new NoteEditWindow(vm);
-                win.ShowDialog();
+
+                var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+                win.SetViewModel(vm);
+
+                if (win.WindowState == WindowState.Minimized)
+                {
+                    win.WindowState = WindowState.Normal;
+                }
+
+                if (!win.IsVisible)
+                {
+                    win.ShowDialog();
+                }
+                else
+                {
+                    win.Activate();
+                }
 
                 if (vm.IsSaved)
                 {
@@ -161,6 +190,285 @@ namespace Névjegyzék
                 MessageBox.Show("Válasszon ki egy jegyzetet a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void DeleteSelectedNotes()
         {

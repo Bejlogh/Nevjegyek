@@ -3,44 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contactswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contactswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\noteeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\noteeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contactsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contactsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\groupeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\groupeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\groupeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:groupeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\noteeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:noteeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\noteswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\noteswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\noteeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\noteeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\groupeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:groupeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\noteeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:noteeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\groupswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\groupswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:contacteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\groupeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\groupeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\contactswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\contactswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\contacteditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,132 +54,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GroupEditWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupEditWindow.xaml",
-              "RelativeDocumentMoniker": "GroupEditWindow.xaml",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupEditWindow.xaml",
-              "RelativeToolTip": "GroupEditWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-30T08:13:04.651Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "NoteEditWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NoteEditWindow.xaml",
-              "RelativeDocumentMoniker": "NoteEditWindow.xaml",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NoteEditWindow.xaml",
-              "RelativeToolTip": "NoteEditWindow.xaml",
+              "Title": "NotesWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NotesWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\NotesWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NotesWindow.xaml",
+              "RelativeToolTip": "UI\\NotesWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-30T08:13:04.471Z",
+              "WhenOpened": "2026-10-30T13:19:48.885Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "GroupEditViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupEditViewModel.cs",
-              "RelativeDocumentMoniker": "GroupEditViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\GroupEditViewModel.cs",
-              "RelativeToolTip": "GroupEditViewModel.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAADwvxMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T08:12:35.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ContactsWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactsWindow.xaml",
-              "RelativeDocumentMoniker": "ContactsWindow.xaml",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactsWindow.xaml",
-              "RelativeToolTip": "ContactsWindow.xaml",
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml",
+              "RelativeToolTip": "UI\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-30T07:47:17.317Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "NotesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NotesViewModel.cs",
-              "RelativeDocumentMoniker": "NotesViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NotesViewModel.cs",
-              "RelativeToolTip": "NotesViewModel.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAApwIcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:11:20.303Z",
+              "WhenOpened": "2026-10-30T13:19:32.368Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "NoteEditViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NoteEditViewModel.cs",
-              "RelativeDocumentMoniker": "NoteEditViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\NoteEditViewModel.cs",
-              "RelativeToolTip": "NoteEditViewModel.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAtwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:11:20.221Z",
+              "Title": "GroupsWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\GroupsWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\GroupsWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\GroupsWindow.xaml",
+              "RelativeToolTip": "UI\\GroupsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T13:19:25.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ContactsWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\ContactsWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\ContactsWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\ContactsWindow.xaml",
+              "RelativeToolTip": "UI\\ContactsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T13:19:10.41Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ContactsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactsViewModel.cs",
-              "RelativeDocumentMoniker": "ContactsViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactsViewModel.cs",
-              "RelativeToolTip": "ContactsViewModel.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAQwHgAAAAUAAAAAAAAAA==",
+              "Title": "GroupEditViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\GroupEditViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\GroupEditViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\GroupEditViewModel.cs",
+              "RelativeToolTip": "ViewModel\\GroupEditViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:01:17.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContactEditWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditWindow.xaml",
-              "RelativeDocumentMoniker": "ContactEditWindow.xaml",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditWindow.xaml",
-              "RelativeToolTip": "ContactEditWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-27T13:51:01.185Z",
+              "WhenOpened": "2026-10-30T12:51:32.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ContactEditViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
-              "RelativeDocumentMoniker": "ContactEditViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ContactEditViewModel.cs",
-              "RelativeToolTip": "ContactEditViewModel.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAApwDEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T13:51:01.083Z",
+              "Title": "GroupEditWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\GroupEditWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\GroupEditWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\GroupEditWindow.xaml",
+              "RelativeToolTip": "UI\\GroupEditWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T12:44:24.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NoteEditWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NoteEditWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\NoteEditWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NoteEditWindow.xaml",
+              "RelativeToolTip": "UI\\NoteEditWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T12:44:24.192Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "MainViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\MainViewModel.cs",
-              "RelativeToolTip": "MainViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Title": "ContactEditWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\ContactEditWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\ContactEditWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\ContactEditWindow.xaml",
+              "RelativeToolTip": "UI\\ContactEditWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T12:44:24.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NoteEditViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\NoteEditViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\NoteEditViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\NoteEditViewModel.cs",
+              "RelativeToolTip": "ViewModel\\NoteEditViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T13:32:39.972Z",
+              "WhenOpened": "2026-10-30T12:44:23.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContactEditViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\ContactEditViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\ContactEditViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\ContactEditViewModel.cs",
+              "RelativeToolTip": "ViewModel\\ContactEditViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-30T12:44:23.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\App.xaml",
+              "RelativeDocumentMoniker": "UI\\App.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\App.xaml",
+              "RelativeToolTip": "UI\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-10-30T12:44:23.555Z",
               "EditorCaption": ""
             }
           ]

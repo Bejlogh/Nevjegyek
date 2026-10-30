@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Note>
+    <Id>b8f9361b369442b3a04e0b0bea432357</Id>
+    <Title>teszt</Title>
+    <Description> sfsdfsfsdf sfsdfsdf fsfdfsdfdsfs</Description>
+    <ContactName>teszt1</ContactName>
+    <ContactId>51a31ff17bd14660beef913ad752d88b</ContactId>
+    <GroupId />
+  </Note>
+  <Note>
+    <Id>0b08bfa0177d4e669e248af40ecff80a</Id>
+    <Title>teszt</Title>
+    <Description>fhfnzjziuiooéiélkékélkj lioéioéiééklljk ghkjkgfjfghjg</Description>
+    <ContactName>teszt2</ContactName>
+    <ContactId>55e24b62ca5348609183716b47a4f327</ContactId>
+    <GroupId />
+  </Note>
+  <Note>
+    <Id>233e7e755f5047c8a48e7c513999150a</Id>
+    <Title>teszt</Title>
+    <Description>sdfsdfs fsfgdhbbvcsf bbdbddbdfbf</Description>
+    <ContactName>teszt4</ContactName>
+    <ContactId>9bd46ebc35fc4342a1574fe3908371a3</ContactId>
+    <GroupId />
+  </Note>
+  <Note>
+    <Id>abfe20e899bb422e97d6e63e86085aca</Id>
+    <Title>teszt3</Title>
+    <Description>sfbcbcn vnghnghngngmhmhmhkhk jhjgjghjgjg</Description>
+    <ContactName>teszt4</ContactName>
+    <ContactId>9bd46ebc35fc4342a1574fe3908371a3</ContactId>
+    <GroupId />
+  </Note>
+  <Note>
+    <Id>806fd75602c54792b4d491bdb286c36a</Id>
+    <Title>teszt1</Title>
+    <Description>sdfsfsdf sfsfsdfsf s fsfdsfsdfdsfdsf</Description>
+    <ContactName />
+    <ContactId />
+    <GroupId>210f23a7f57e428bbded8f4e2377cce9</GroupId>
+  </Note>
+  <Note>
+    <Id>4776004ad6e14b139624a3667bb0f74a</Id>
+    <Title>teszt4</Title>
+    <Description>fdsfsfs sfsdfdsf sfsdfsdfsdfdsf fsfsdfsfsf</Description>
+    <ContactName />
+    <ContactId />
+    <GroupId>5e5aba655232436997a392e6687bc64c</GroupId>
+  </Note>
+</ArrayOfNote>

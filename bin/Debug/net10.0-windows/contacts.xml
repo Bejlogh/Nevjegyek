@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Contact>
-    <Id>58b6f1e13b0840df876f4449290dbe7c</Id>
-    <Name>asdsadasd</Name>
-    <Phone>323233</Phone>
-    <BirthDate />
+    <Id>0d117a148f6142de9236b5ad4f14167f</Id>
+    <Name>alma</Name>
+    <Phone>343455</Phone>
+    <BirthDate>2000-10-04</BirthDate>
+    <ImagePath />
     <IsBlocked>false</IsBlocked>
   </Contact>
   <Contact>
-    <Id>db4dba56253f49a38542ce12bd2d4a7d</Id>
-    <Name>sfdfsdfsd</Name>
-    <Phone>21212121</Phone>
-    <BirthDate>2006-10-14</BirthDate>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\5c827d15-0490-4d9c-965b-49d104e9bc31.jpg</ImagePath>
-    <IsBlocked>false</IsBlocked>
-  </Contact>
-  <Contact>
-    <Id>55950a98426946278417c4fc8e39caa6</Id>
-    <Name>sfsgdfgdg</Name>
-    <Email>hfsdfsfs@gmail.hu</Email>
-    <Phone>1212335</Phone>
+    <Id>51a31ff17bd14660beef913ad752d88b</Id>
+    <Name>teszt1</Name>
+    <Email>valami@teszt.hu</Email>
+    <Phone>01234332323</Phone>
     <BirthDate />
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\0c6c33d8-38cd-46a6-987b-e7b95edbd712.jpg</ImagePath>
     <IsBlocked>false</IsBlocked>
   </Contact>
   <Contact>
@@ -28,7 +22,42 @@
     <Name>teszt2</Name>
     <Phone>11111111</Phone>
     <BirthDate>2006-10-15</BirthDate>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\3114c0ab-e6f0-402c-8abc-6f57e98299d3.jpg</ImagePath>
+    <ImagePath />
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>fdfe1e2f61bb46a28e4f96f12f917e03</Id>
+    <Name>teszt3</Name>
+    <Phone>3445676868678</Phone>
+    <BirthDate>1985-07-11</BirthDate>
+    <Website>aaaaa.hu</Website>
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>9bd46ebc35fc4342a1574fe3908371a3</Id>
+    <Name>teszt4</Name>
+    <Phone>95847454</Phone>
+    <BirthDate />
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\9267a212-4c39-4015-9f6a-1a547152044c.jpg</ImagePath>
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>8782c4ae203a4e18b0b21b8ca0139357</Id>
+    <Name>teszt5</Name>
+    <Phone>21222222</Phone>
+    <BirthDate />
+    <ImagePath />
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>465206321f764f7b9268d1d32795d201</Id>
+    <Name>teszt6</Name>
+    <Email>sdf@sf.hu</Email>
+    <Phone>01232</Phone>
+    <Position>dsfsdf</Position>
+    <Address>dfsfdsfs</Address>
+    <BirthDate />
+    <Website>dwdsds.hu</Website>
     <IsBlocked>false</IsBlocked>
   </Contact>
 </ArrayOfContact>
