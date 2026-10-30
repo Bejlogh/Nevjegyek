@@ -52,7 +52,7 @@ namespace Névjegyzék {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Névjegyzék;V1.0.0.0;component/groupeditwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Névjegyzék;component/groupeditwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\GroupEditWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

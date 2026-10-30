@@ -9,6 +9,7 @@ namespace Névjegyzék
     {
         private string _noteTitle;
         private string _noteDescription;
+        private readonly Func<string, bool> _isDuplicateTitle;
 
         public Window Window { get; set; }
         public bool IsSaved { get; private set; } = false;
@@ -28,8 +29,10 @@ namespace Névjegyzék
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public NoteEditViewModel(Note note = null)
+        public NoteEditViewModel(Note note = null, Func<string, bool> isDuplicateTitle = null)
         {
+            _isDuplicateTitle = isDuplicateTitle;
+
             if (note != null)
             {
                 _noteTitle = note.Title;
@@ -48,6 +51,10 @@ namespace Névjegyzék
             {
                 errors.Add("A jegyzet címét meg kell adni!");
             }
+            else if (_isDuplicateTitle?.Invoke(NoteTitle) == true)
+            {
+                errors.Add("Már létezik ilyen nevű jegyzet ennél a névjegynél!");
+            }
 
             if (string.IsNullOrWhiteSpace(NoteDescription))
             {
@@ -57,6 +64,12 @@ namespace Névjegyzék
             if (!string.IsNullOrWhiteSpace(NoteDescription) && NoteDescription.Length < 30)
             {
                 errors.Add("Legalább 30 karakter hosszú szöveg kell!");
+            }
+
+            if (!string.IsNullOrWhiteSpace(NoteDescription) &&
+                NoteDescription.Split((char[])null, StringSplitOptions.RemoveEmptyEntries).Length < 3)
+            {
+                errors.Add("A jegyzet szövegének legalább 3 szót kell tartalmaznia!");
             }
 
             if (errors.Count > 0)

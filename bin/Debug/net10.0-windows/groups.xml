@@ -3,15 +3,6 @@
   <ContactGroup>
     <Id>210f23a7f57e428bbded8f4e2377cce9</Id>
     <Name>teszt1</Name>
-    <Contacts>
-      <Contact>
-        <Id>9f2c5eb4c66e4869925b6c51a57b99b6</Id>
-        <Name>fsfdfsdfsf</Name>
-        <Phone>01010101</Phone>
-        <BirthDate>2026-01-01</BirthDate>
-        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\f17a3b9d-e3b9-4cef-abb1-e9987c6ffd34.jpg</ImagePath>
-        <IsBlocked>false</IsBlocked>
-      </Contact>
-    </Contacts>
+    <Contacts />
   </ContactGroup>
 </ArrayOfContactGroup>

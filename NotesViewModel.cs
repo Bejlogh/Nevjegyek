@@ -103,6 +103,13 @@ namespace Névjegyzék
             XmlFileManager.ContactManaging(allContacts);
         }
 
+        private bool HasDuplicateTitle(string title, Note noteToIgnore = null)
+        {
+            return SelectableNotes.Any(selectableNote =>
+                selectableNote.Note != noteToIgnore &&
+                string.Equals(selectableNote.Note.Title?.Trim(), title?.Trim(), StringComparison.CurrentCultureIgnoreCase));
+        }
+
         private void OpenAddWindow()
         {
             if (_selectedContact == null)
@@ -111,7 +118,7 @@ namespace Névjegyzék
                 return;
             }
 
-            var vm = new NoteEditViewModel();
+            var vm = new NoteEditViewModel(isDuplicateTitle: title => HasDuplicateTitle(title));
             var win = new NoteEditWindow(vm);
             win.ShowDialog();
 
@@ -131,7 +138,9 @@ namespace Névjegyzék
         {
             if (SelectedSelectableNote?.Note != null)
             {
-                var vm = new NoteEditViewModel(SelectedSelectableNote.Note);
+                var vm = new NoteEditViewModel(
+                    SelectedSelectableNote.Note,
+                    title => HasDuplicateTitle(title, SelectedSelectableNote.Note));
                 var win = new NoteEditWindow(vm);
                 win.ShowDialog();
 

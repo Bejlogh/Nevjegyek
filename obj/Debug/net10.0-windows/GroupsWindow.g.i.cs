@@ -53,7 +53,7 @@ namespace Névjegyzék {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Névjegyzék;V1.0.0.0;component/groupswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Névjegyzék;component/groupswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\GroupsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

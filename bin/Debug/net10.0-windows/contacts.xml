@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Contact>
-    <Id>9f2c5eb4c66e4869925b6c51a57b99b6</Id>
-    <Name>fsfdfsdfsf</Name>
-    <Phone>01010101</Phone>
-    <BirthDate>2008-10-27</BirthDate>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\f17a3b9d-e3b9-4cef-abb1-e9987c6ffd34.jpg</ImagePath>
+    <Id>58b6f1e13b0840df876f4449290dbe7c</Id>
+    <Name>asdsadasd</Name>
+    <Phone>323233</Phone>
+    <BirthDate />
     <IsBlocked>false</IsBlocked>
   </Contact>
   <Contact>
-    <Id>0547c6d2b0334d7382b1066f6d3f6b2c</Id>
-    <Name>dfasdasdas</Name>
-    <Phone>101010101010</Phone>
-    <BirthDate>2004-02-18</BirthDate>
-    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\bdfb5761-557a-410b-99ce-995bc814d0e5.jpg</ImagePath>
+    <Id>db4dba56253f49a38542ce12bd2d4a7d</Id>
+    <Name>sfdfsdfsd</Name>
+    <Phone>21212121</Phone>
+    <BirthDate>2006-10-14</BirthDate>
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\5c827d15-0490-4d9c-965b-49d104e9bc31.jpg</ImagePath>
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>55950a98426946278417c4fc8e39caa6</Id>
+    <Name>sfsgdfgdg</Name>
+    <Email>hfsdfsfs@gmail.hu</Email>
+    <Phone>1212335</Phone>
+    <BirthDate />
+    <IsBlocked>false</IsBlocked>
+  </Contact>
+  <Contact>
+    <Id>55e24b62ca5348609183716b47a4f327</Id>
+    <Name>teszt2</Name>
+    <Phone>11111111</Phone>
+    <BirthDate>2006-10-15</BirthDate>
+    <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\3114c0ab-e6f0-402c-8abc-6f57e98299d3.jpg</ImagePath>
     <IsBlocked>false</IsBlocked>
   </Contact>
 </ArrayOfContact>

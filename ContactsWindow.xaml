@@ -44,7 +44,11 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <Button Grid.Row="1" Content="Kijelöltek Törlése" Command="{Binding DeleteSelectedContactsCommand}" Height="32"/>
+                <UniformGrid Grid.Row="1" Columns="3" Height="32">
+                    <Button Content="Törlés" ToolTip="Kijelölt névjegyek törlése" Command="{Binding DeleteSelectedContactsCommand}" Margin="0,0,2,0"/>
+                    <Button Content="Letiltás" ToolTip="Kijelölt névjegyek letiltása" Command="{Binding BlockSelectedContactsCommand}" Margin="2,0,0,0"/>
+                    <Button Content="Feloldás" ToolTip="Kijelölt névjegyek letiltásának feloldása" Command="{Binding UnblockSelectedContactsCommand}" Margin="2,0,0,0"/>
+                </UniformGrid>
             </Grid>
         </GroupBox>
 

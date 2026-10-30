@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -29,6 +30,8 @@ namespace Névjegyzék
             OpenAddWindowCommand = new RelayCommand(OpenAddWindow);
             OpenEditWindowCommand = new RelayCommand(OpenEditWindow);
             DeleteSelectedContactsCommand = new RelayCommand(DeleteSelectedContacts);
+            BlockSelectedContactsCommand = new RelayCommand(BlockSelectedContacts);
+            UnblockSelectedContactsCommand = new RelayCommand(UnblockSelectedContacts);
         }
 
         public ObservableCollection<SelectableContact> Contacts
@@ -46,17 +49,82 @@ namespace Névjegyzék
         public ICommand OpenAddWindowCommand { get; }
         public ICommand OpenEditWindowCommand { get; }
         public ICommand DeleteSelectedContactsCommand { get; }
+        public ICommand BlockSelectedContactsCommand { get; }
+        public ICommand UnblockSelectedContactsCommand { get; }
 
         private void LoadContacts()
         {
             var loaded = XmlFileManager.ContactLoading();
-            var list = new ObservableCollection<SelectableContact>();
+            var list = new List<SelectableContact>();
             foreach (var c in loaded)
             {
                 c.LoadImageSource();
                 list.Add(new SelectableContact { Contact = c });
             }
-            Contacts = list;
+            Contacts = new ObservableCollection<SelectableContact>(SortContacts(list));
+        }
+
+        private static IEnumerable<SelectableContact> SortContacts(IEnumerable<SelectableContact> contacts)
+        {
+            return contacts.OrderBy(
+                contact => contact.Contact?.Name ?? string.Empty,
+                StringComparer.CurrentCultureIgnoreCase);
+        }
+
+        private void SortContacts()
+        {
+            var sortedContacts = SortContacts(Contacts).ToList();
+            Contacts.Clear();
+            foreach (var contact in sortedContacts)
+            {
+                Contacts.Add(contact);
+            }
+        }
+
+        private void UnblockSelectedContacts()
+        {
+            var toUnblock = Contacts
+                .Where(x => x.IsSelectedForDelete && x.Contact.IsBlocked)
+                .ToList();
+            if (toUnblock.Count == 0)
+            {
+                MessageBox.Show("Jelöljön ki legalább egy letiltott névjegyet a feloldáshoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Biztosan fel szeretné oldani a kiválasztott {toUnblock.Count} névjegy letiltását?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (var item in toUnblock)
+                {
+                    item.Contact.IsBlocked = false;
+                    item.IsSelectedForDelete = false;
+                }
+
+                SelectedContact = null;
+                SaveContacts();
+            }
+        }
+
+        private void BlockSelectedContacts()
+        {
+            var toBlock = Contacts.Where(x => x.IsSelectedForDelete).ToList();
+            if (toBlock.Count == 0)
+            {
+                MessageBox.Show("Jelöljön ki legalább egy letiltandó névjegyet a jelölőnégyzettel!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Biztosan le szeretné tiltani a kiválasztott {toBlock.Count} névjegyet?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (var item in toBlock)
+                {
+                    item.Contact.IsBlocked = true;
+                    item.IsSelectedForDelete = false;
+                }
+
+                SelectedContact = null;
+                SaveContacts();
+            }
         }
 
         private void SaveContacts()
@@ -65,9 +133,33 @@ namespace Névjegyzék
             XmlFileManager.ContactManaging(rawList);
         }
 
+        private bool HasDuplicateName(string name, Contact contactToIgnore = null)
+        {
+            return Contacts.Any(selectableContact =>
+                selectableContact.Contact != contactToIgnore &&
+                string.Equals(selectableContact.Contact.Name?.Trim(), name?.Trim(), StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        private bool HasDuplicateEmail(string email, Contact contactToIgnore = null)
+        {
+            return Contacts.Any(selectableContact =>
+                selectableContact.Contact != contactToIgnore &&
+                string.Equals(selectableContact.Contact.Email?.Trim(), email?.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
+
+        private bool HasDuplicatePhone(string phone, Contact contactToIgnore = null)
+        {
+            return Contacts.Any(selectableContact =>
+                selectableContact.Contact != contactToIgnore &&
+                string.Equals(selectableContact.Contact.Phone?.Trim(), phone?.Trim(), StringComparison.Ordinal));
+        }
+
         private void OpenAddWindow()
         {
-            var vm = new ContactEditViewModel();
+            var vm = new ContactEditViewModel(
+                isDuplicateName: name => HasDuplicateName(name),
+                isDuplicateEmail: email => HasDuplicateEmail(email),
+                isDuplicatePhone: phone => HasDuplicatePhone(phone));
             var win = new ContactEditWindow(vm);
             win.ShowDialog();
 
@@ -77,6 +169,7 @@ namespace Névjegyzék
                 vm.UpdateContactModel(newContact);
 
                 Contacts.Add(new SelectableContact { Contact = newContact });
+                SortContacts();
                 SaveContacts();
             }
         }
@@ -85,20 +178,19 @@ namespace Névjegyzék
         {
             if (SelectedContact?.Contact != null)
             {
-                var vm = new ContactEditViewModel(SelectedContact.Contact);
+                var vm = new ContactEditViewModel(
+                    SelectedContact.Contact,
+                    name => HasDuplicateName(name, SelectedContact.Contact),
+                    email => HasDuplicateEmail(email, SelectedContact.Contact),
+                    phone => HasDuplicatePhone(phone, SelectedContact.Contact));
                 var win = new ContactEditWindow(vm);
                 win.ShowDialog();
 
                 if (vm.IsSaved)
                 {
                     vm.UpdateContactModel(SelectedContact.Contact);
+                    SortContacts();
                     SaveContacts();
-
-                    var temp = SelectedContact;
-                    Contacts.Remove(temp);
-                    Contacts.Insert(0, temp);
-                    SelectedContact = temp;
-
                 }
             }
             else

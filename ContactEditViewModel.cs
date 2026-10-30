@@ -22,6 +22,9 @@ namespace Névjegyzék
         private string _contactImagePath;
         private BitmapImage _contactImageSource;
         private bool _isBlocked;
+        private readonly Func<string, bool> _isDuplicateName;
+        private readonly Func<string, bool> _isDuplicateEmail;
+        private readonly Func<string, bool> _isDuplicatePhone;
 
         public Window Window { get; set; }
         public bool IsSaved { get; private set; } = false;
@@ -50,8 +53,16 @@ namespace Névjegyzék
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public ContactEditViewModel(Contact contact = null)
+        public ContactEditViewModel(
+            Contact contact = null,
+            Func<string, bool> isDuplicateName = null,
+            Func<string, bool> isDuplicateEmail = null,
+            Func<string, bool> isDuplicatePhone = null)
         {
+            _isDuplicateName = isDuplicateName;
+            _isDuplicateEmail = isDuplicateEmail;
+            _isDuplicatePhone = isDuplicatePhone;
+
             if (contact != null)
             {
                 _contactName = contact.Name;
@@ -170,13 +181,25 @@ namespace Névjegyzék
             {
                 errors.Add("Nem megfelelő név formátum. Példa: Kovács Anna");
             }
+            else if (!string.IsNullOrWhiteSpace(ContactName) && _isDuplicateName?.Invoke(ContactName) == true)
+            {
+                errors.Add("Már létezik ilyen nevű névjegy!");
+            }
             if (!string.IsNullOrWhiteSpace(ContactPhone) && !PhoneNumberMatch(ContactPhone))
             {
                 errors.Add("Nem megfelelő telefonszám formátum. Példa: +36123456789");
             }
+            else if (!string.IsNullOrWhiteSpace(ContactPhone) && _isDuplicatePhone?.Invoke(ContactPhone) == true)
+            {
+                errors.Add("Ez a telefonszám már egy másik névjegynél szerepel!");
+            }
             if (!string.IsNullOrWhiteSpace(ContactEmail) && !EmailMatch(ContactEmail))
             {
                 errors.Add("Nem megfelelő email cím formátum. Példa: valaki@pelda.hu");
+            }
+            else if (!string.IsNullOrWhiteSpace(ContactEmail) && _isDuplicateEmail?.Invoke(ContactEmail) == true)
+            {
+                errors.Add("Ez az email cím már egy másik névjegynél szerepel!");
             }
             if (!BirthDateMatch(ContactBirthDate))
             {

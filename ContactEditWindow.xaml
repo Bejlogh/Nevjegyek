@@ -44,7 +44,6 @@
                 <Label Content="Webhely:" Foreground="#555555" Padding="0,0,0,2"/>
                 <TextBox Text="{Binding ContactWebsite, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
 
-                <CheckBox Content="Letiltás" IsChecked="{Binding IsBlocked, Mode=TwoWay}" Margin="2,6,0,0"/>
             </StackPanel>
         </ScrollViewer>
 
