@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,12 +9,18 @@ namespace Névjegyzék
         private string _groupName;
 
         public Window Window { get; set; }
-        public bool IsSaved { get; private set; } = false;
+        public bool IsSaved { get; private set; }
 
         public string GroupName
         {
             get => _groupName;
-            set => SetProperty(ref _groupName, value);
+            set
+            {
+                if (SetProperty(ref _groupName, value))
+                {
+                    SaveCommand?.RaiseCanExecuteChanged();
+                }
+            }
         }
 
         public string Error => null;
@@ -33,24 +38,24 @@ namespace Névjegyzék
             }
         }
 
-        public ICommand SaveCommand { get; }
+        public RelayCommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
         public GroupEditViewModel(string groupName = "")
         {
             _groupName = groupName;
-            SaveCommand = new RelayCommand(Save);
+            SaveCommand = new RelayCommand(Save, CanSave);
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        private bool ValidateFields()
+        private bool CanSave()
         {
-            return string.IsNullOrWhiteSpace(this[nameof(GroupName)]) == false;
+            return !string.IsNullOrWhiteSpace(GroupName);
         }
 
         private void Save()
         {
-            if (!ValidateFields())
+            if (!CanSave())
             {
                 return;
             }
@@ -63,6 +68,16 @@ namespace Névjegyzék
         {
             IsSaved = false;
             Window?.Close();
+        }
+
+        public void UpdateGroupModel(ContactGroup group)
+        {
+            if (group == null)
+            {
+                return;
+            }
+
+            group.Name = GroupName;
         }
     }
 }

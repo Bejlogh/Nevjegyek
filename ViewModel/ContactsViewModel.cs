@@ -191,13 +191,14 @@ namespace Névjegyzék
 
         private void OpenEditWindow()
         {
-            if (SelectedContact?.Contact != null)
+            var editingContact = SelectedContact?.Contact;
+            if (editingContact != null)
             {
                 var vm = new ContactEditViewModel(
-                    SelectedContact.Contact,
-                    name => HasDuplicateName(name, SelectedContact.Contact),
-                    email => HasDuplicateEmail(email, SelectedContact.Contact),
-                    phone => HasDuplicatePhone(phone, SelectedContact.Contact));
+                    editingContact,
+                    name => HasDuplicateName(name, editingContact),
+                    email => HasDuplicateEmail(email, editingContact),
+                    phone => HasDuplicatePhone(phone, editingContact));
 
                 var win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
                 win.SetViewModel(vm);
@@ -218,7 +219,7 @@ namespace Névjegyzék
 
                 if (vm.IsSaved)
                 {
-                    vm.UpdateContactModel(SelectedContact.Contact);
+                    vm.UpdateContactModel(editingContact);
                     SortContacts();
                     SaveContacts();
                 }

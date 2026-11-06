@@ -34,3 +34,8 @@ C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\UI\GroupsWin
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\UI\MainWindow.baml
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\UI\NotesWindow.baml
 C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\Névjegyzék.csproj.Up2Date
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\Resources\Localization\Strings.en.baml
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\Resources\Localization\Strings.hu.baml
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\UI\LoadingWindow.baml
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\UI\LoadingWindow.g.cs
+C:\Users\Tanulo\source\repos\Névjegyzék\obj\Debug\net10.0-windows\Resources\Themes\ModernTheme.baml

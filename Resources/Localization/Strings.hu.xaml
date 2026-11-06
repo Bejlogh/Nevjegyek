@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="MainWindow_Title">Névjegyzék Kezelő - Főoldal</sys:String>
+    <sys:String x:Key="MainWindow_SelectFunction">Válasszon funkciót:</sys:String>
+    <sys:String x:Key="MainWindow_ManageContacts">Névjegyek Kezelése</sys:String>
+    <sys:String x:Key="MainWindow_ManageNotes">Jegyzetek Kezelése</sys:String>
+    <sys:String x:Key="MainWindow_ManageGroups">Csoportok Kezelése</sys:String>
+    <sys:String x:Key="MainWindow_LanguageLabel">Nyelv:</sys:String>
+
+    <sys:String x:Key="ContactsWindow_Title">Névjegyek</sys:String>
+    <sys:String x:Key="ContactsWindow_Contacts">Névjegyek</sys:String>
+    <sys:String x:Key="ContactsWindow_Delete">Törlés</sys:String>
+    <sys:String x:Key="ContactsWindow_Block">Letiltás</sys:String>
+    <sys:String x:Key="ContactsWindow_Unblock">Feloldás</sys:String>
+    <sys:String x:Key="ContactsWindow_Details">Névjegy részletei</sys:String>
+    <sys:String x:Key="ContactsWindow_Name">Név:</sys:String>
+    <sys:String x:Key="ContactsWindow_Email">E-mail:</sys:String>
+    <sys:String x:Key="ContactsWindow_Phone">Telefonszám:</sys:String>
+    <sys:String x:Key="ContactsWindow_Position">Pozíció:</sys:String>
+    <sys:String x:Key="ContactsWindow_Address">Lakhely:</sys:String>
+    <sys:String x:Key="ContactsWindow_BirthDate">Születési dátum:</sys:String>
+    <sys:String x:Key="ContactsWindow_Website">Webhely:</sys:String>
+    <sys:String x:Key="ContactsWindow_StatusBlocked">Státusz (Letiltva):</sys:String>
+    <sys:String x:Key="ContactsWindow_BlockedSuffix"> (Letiltva)</sys:String>
+    <sys:String x:Key="ContactsWindow_NewContact">Új névjegy...</sys:String>
+    <sys:String x:Key="ContactsWindow_EditContact">Módosítás...</sys:String>
+
+    <sys:String x:Key="NotesWindow_Title">Jegyzetek</sys:String>
+    <sys:String x:Key="NotesWindow_Contacts">Kapcsolatok</sys:String>
+    <sys:String x:Key="NotesWindow_Notes">Jegyzetek</sys:String>
+    <sys:String x:Key="NotesWindow_TitleLabel">Cím:</sys:String>
+    <sys:String x:Key="NotesWindow_DescriptionLabel">Leírás:</sys:String>
+    <sys:String x:Key="NotesWindow_Add">Hozzáadás</sys:String>
+    <sys:String x:Key="NotesWindow_Edit">Szerkesztés</sys:String>
+    <sys:String x:Key="NotesWindow_DeleteSelected">Kijelöltek törlése</sys:String>
+
+    <sys:String x:Key="GroupsWindow_Title">Csoportok</sys:String>
+    <sys:String x:Key="GroupsWindow_Groups">Csoportok</sys:String>
+    <sys:String x:Key="GroupsWindow_Members">Tagok</sys:String>
+    <sys:String x:Key="GroupsWindow_AddContacts">Kontaktok hozzáadása</sys:String>
+    <sys:String x:Key="GroupsWindow_GroupNotes">Csoport jegyzetei</sys:String>
+    <sys:String x:Key="GroupsWindow_New">Új</sys:String>
+    <sys:String x:Key="GroupsWindow_Edit">Szerkesztés</sys:String>
+    <sys:String x:Key="GroupsWindow_Delete">Törlés</sys:String>
+    <sys:String x:Key="GroupsWindow_RemoveSelected">Kijelöltek eltávolítása</sys:String>
+    <sys:String x:Key="GroupsWindow_AddSelected">Kijelöltek hozzáadása</sys:String>
+    <sys:String x:Key="GroupsWindow_AddNote">Jegyzet hozzáadása</sys:String>
+    <sys:String x:Key="GroupsWindow_EditNote">Jegyzet szerkesztése</sys:String>
+    <sys:String x:Key="GroupsWindow_DeleteNotes">Jegyzetek törlése</sys:String>
+    <sys:String x:Key="GroupsWindow_NoteTitle">Cím</sys:String>
+    <sys:String x:Key="GroupsWindow_NoteDescription">Leírás</sys:String>
+
+    <sys:String x:Key="ContactEditWindow_Title">Névjegy szerkesztése</sys:String>
+    <sys:String x:Key="ContactEditWindow_Image">Kép:</sys:String>
+    <sys:String x:Key="ContactEditWindow_Upload">Feltöltés</sys:String>
+    <sys:String x:Key="ContactEditWindow_DeleteImage">Kép törlése</sys:String>
+    <sys:String x:Key="ContactEditWindow_Name">Név</sys:String>
+    <sys:String x:Key="ContactEditWindow_Email">E-mail</sys:String>
+    <sys:String x:Key="ContactEditWindow_Phone">Telefonszám</sys:String>
+    <sys:String x:Key="ContactEditWindow_Position">Pozíció</sys:String>
+    <sys:String x:Key="ContactEditWindow_BirthDate">Születési dátum</sys:String>
+    <sys:String x:Key="ContactEditWindow_Website">Webhely</sys:String>
+    <sys:String x:Key="ContactEditWindow_Save">Mentés</sys:String>
+    <sys:String x:Key="ContactEditWindow_Cancel">Mégse</sys:String>
+
+    <sys:String x:Key="GroupEditWindow_Title">Csoport szerkesztése</sys:String>
+    <sys:String x:Key="GroupEditWindow_GroupName">Csoport neve</sys:String>
+    <sys:String x:Key="GroupEditWindow_Save">Mentés</sys:String>
+    <sys:String x:Key="GroupEditWindow_Cancel">Mégse</sys:String>
+
+    <sys:String x:Key="NoteEditWindow_Title">Jegyzet szerkesztése</sys:String>
+    <sys:String x:Key="NoteEditWindow_NoteTitle">Jegyzet címe</sys:String>
+    <sys:String x:Key="NoteEditWindow_Description">Leírás</sys:String>
+    <sys:String x:Key="NoteEditWindow_Save">Mentés</sys:String>
+    <sys:String x:Key="NoteEditWindow_Cancel">Mégse</sys:String>
+
+    <sys:String x:Key="Loading_Cancel">Mégse</sys:String>
+    <sys:String x:Key="Loading_Title">Betöltés...</sys:String>
+</ResourceDictionary>

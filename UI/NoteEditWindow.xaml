@@ -1,10 +1,22 @@
 ﻿<Window x:Class="Névjegyzék.NoteEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Jegyzet Szerkesztése" Height="380" Width="400" MinWidth="400" MinHeight="380"
-        Background="#F3F3F3" WindowStartupLocation="CenterScreen"> 
+        Title="{DynamicResource NoteEditWindow_Title}" Height="380" Width="400" MinWidth="400" MinHeight="380"
+        Background="#F3F3F3" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <Style x:Key="SaveButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#B8B8B8"/>
+                    <Setter Property="Foreground" Value="#5F5F5F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <ControlTemplate x:Key="ValidationErrorTemplate">
             <Grid Margin="0,0,0,6">
                 <Grid.RowDefinitions>
@@ -38,340 +50,21 @@
 
         <StackPanel Grid.Row="0">
             <StackPanel Margin="0,0,0,18">
-                <Label Content="Jegyzet címe:" Foreground="#555555" Padding="0,0,0,2"/>
+                <Label Content="{DynamicResource NoteEditWindow_NoteTitle}" Foreground="#555555" Padding="0,0,0,2"/>
                 <TextBox Text="{Binding NoteTitle, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
                          Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,0,8">
-                <Label Content="Leírás:" Foreground="#555555" Padding="0,0,0,2"/>
+                <Label Content="{DynamicResource NoteEditWindow_Description}" Foreground="#555555" Padding="0,0,0,2"/>
                 <TextBox Text="{Binding NoteDescription, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
                          Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" Height="150" AcceptsReturn="True" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>
 
-        <UniformGrid Grid.Row="1" Columns="2" Height="34" Margin="0,8,0,0">
-            <Button Content="Mentés" Command="{Binding SaveCommand}" Margin="2" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
-            <Button Content="Mégse" Command="{Binding CancelCommand}" Margin="2"/>
+        <UniformGrid Grid.Row="1" Columns="2" Height="40" Margin="0,10,0,0">
+            <Button Content="{DynamicResource NoteEditWindow_Save}" Command="{Binding SaveCommand}" Margin="2" Height="38" MinWidth="120" Style="{StaticResource SaveButtonStyle}"/>
+            <Button Content="{DynamicResource NoteEditWindow_Cancel}" Command="{Binding CancelCommand}" Margin="2" Height="38" MinWidth="120" Style="{StaticResource DangerButtonStyle}"/>
         </UniformGrid>
     </Grid>
 </Window>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

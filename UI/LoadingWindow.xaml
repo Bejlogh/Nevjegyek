@@ -1,0 +1,49 @@
+<Window x:Class="Névjegyzék.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Betöltés"
+        Width="420"
+        Height="225"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Background="{DynamicResource ModernBackgroundBrush}">
+    <Border Margin="16"
+            Padding="18"
+            CornerRadius="18"
+            Background="{DynamicResource ModernPanelBrush}"
+            BorderBrush="{DynamicResource ModernBorderBrush}"
+            BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{DynamicResource Loading_Title}"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,12"/>
+
+            <ProgressBar x:Name="LoadingProgressBar"
+                         Grid.Row="1"
+                         Height="18"
+                         Minimum="0"
+                         Maximum="3000"
+                         Value="0"
+                         Margin="0,0,0,14"
+                         Background="#E2E8F0"
+                         Foreground="{DynamicResource ModernPrimaryBrush}"/>
+
+            <Button Grid.Row="2"
+                    Content="{DynamicResource Loading_Cancel}"
+                    Width="150"
+                    Height="36"
+                    HorizontalAlignment="Center"
+                    Click="CancelButton_Click"
+		    Style="{StaticResource DangerButtonStyle}"/>
+        </Grid>
+    </Border>
+</Window>

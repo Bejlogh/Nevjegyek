@@ -1,0 +1,82 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="ModernBackgroundBrush" Color="#F4F7FB"/>
+    <SolidColorBrush x:Key="ModernPanelBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ModernSurfaceBrush" Color="#EEF4FF"/>
+    <SolidColorBrush x:Key="ModernPrimaryBrush" Color="#2563EB"/>
+    <SolidColorBrush x:Key="ModernPrimaryDarkBrush" Color="#1D4ED8"/>
+    <SolidColorBrush x:Key="ModernSecondaryBrush" Color="#0F172A"/>
+    <SolidColorBrush x:Key="ModernBorderBrush" Color="#D9E2F2"/>
+    <SolidColorBrush x:Key="ModernTextBrush" Color="#1E293B"/>
+    <SolidColorBrush x:Key="ModernMutedBrush" Color="#64748B"/>
+    <SolidColorBrush x:Key="ModernDangerBrush" Color="#E11D48"/>
+
+    <Style TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{StaticResource ModernBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTextBrush}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource ModernTextBrush}"/>
+    </Style>
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="{StaticResource ModernTextBrush}"/>
+    </Style>
+
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="Background" Value="{StaticResource ModernPanelBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ModernBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernSecondaryBrush}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="{StaticResource ModernPanelBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ModernBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{StaticResource ModernPanelBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ModernBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTextBrush}"/>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{StaticResource ModernTextBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ModernHeaderText" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource ModernSecondaryBrush}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style x:Key="DangerButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ModernDangerBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        
+    </Style>
+    <Style x:Key="RegularButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ModernPrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+</ResourceDictionary>

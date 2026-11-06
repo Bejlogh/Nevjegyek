@@ -36,10 +36,6 @@ namespace Névjegyzék
                         {
                             return "A jegyzet szövegét meg kell adni!";
                         }
-                        if (NoteDescription.Length < 30)
-                        {
-                            return "Legalább 30 karakter hosszú szöveg kell!";
-                        }
                         if (NoteDescription.Split((char[])null, StringSplitOptions.RemoveEmptyEntries).Length < 3)
                         {
                             return "A jegyzet szövegének legalább 3 szót kell tartalmaznia!";
@@ -57,17 +53,34 @@ namespace Névjegyzék
         public string NoteTitle
         {
             get => _noteTitle;
-            set => SetProperty(ref _noteTitle, value);
+            set
+            {
+                if (SetProperty(ref _noteTitle, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
         }
 
         public string NoteDescription
         {
             get => _noteDescription;
-            set => SetProperty(ref _noteDescription, value);
+            set
+            {
+                if (SetProperty(ref _noteDescription, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
         }
 
-        public ICommand SaveCommand { get; }
+        public RelayCommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
+
+        private void NotifySaveCommandChanged()
+        {
+            SaveCommand?.RaiseCanExecuteChanged();
+        }
 
         public NoteEditViewModel(Note note = null, Func<string, bool> isDuplicateTitle = null)
         {
@@ -79,8 +92,13 @@ namespace Névjegyzék
                 _noteDescription = note.Description;
             }
 
-            SaveCommand = new RelayCommand(Save);
+            SaveCommand = new RelayCommand(Save, CanSave);
             CancelCommand = new RelayCommand(Cancel);
+        }
+
+        private bool CanSave()
+        {
+            return ValidateFields();
         }
 
         private bool ValidateFields()

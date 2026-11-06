@@ -3,8 +3,9 @@
   <Contact>
     <Id>0d117a148f6142de9236b5ad4f14167f</Id>
     <Name>alma</Name>
-    <Phone>343455</Phone>
+    <Phone>121</Phone>
     <BirthDate>2000-10-04</BirthDate>
+    <Website>fsdfsfs.hg</Website>
     <ImagePath />
     <IsBlocked>false</IsBlocked>
   </Contact>
@@ -38,6 +39,7 @@
     <Name>teszt4</Name>
     <Phone>95847454</Phone>
     <BirthDate />
+    <Website>dssd.hg</Website>
     <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\9267a212-4c39-4015-9f6a-1a547152044c.jpg</ImagePath>
     <IsBlocked>false</IsBlocked>
   </Contact>
@@ -46,6 +48,7 @@
     <Name>teszt5</Name>
     <Phone>21222222</Phone>
     <BirthDate />
+    <Website>dfsfsdfsd.gh</Website>
     <ImagePath />
     <IsBlocked>false</IsBlocked>
   </Contact>
@@ -58,6 +61,6 @@
     <Address>dfsfdsfs</Address>
     <BirthDate />
     <Website>dwdsds.hu</Website>
-    <IsBlocked>false</IsBlocked>
+    <IsBlocked>true</IsBlocked>
   </Contact>
 </ArrayOfContact>

@@ -1,22 +1,40 @@
-﻿using Névjegyzék;
-using System.Drawing.Printing;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Media3D;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Névjegyzék
 {
     public class MainViewModel : ViewModelBase
     {
+        private string _selectedLanguageCode;
+
         public ICommand OpenContactsCommand { get; }
         public ICommand OpenNotesCommand { get; }
         public ICommand OpenGroupsCommand { get; }
 
+        public ObservableCollection<KeyValuePair<string, string>> AvailableLanguages { get; } =
+            new(LanguageManager.SupportedLanguages.Select(x => new KeyValuePair<string, string>(x.Key, x.Value)));
+
+        public string SelectedLanguageCode
+        {
+            get => _selectedLanguageCode;
+            set
+            {
+                if (SetProperty(ref _selectedLanguageCode, value))
+                {
+                    LanguageManager.ApplyLanguage(value);
+                }
+            }
+        }
+
         public MainViewModel()
         {
+            _selectedLanguageCode = LanguageManager.CurrentLanguageCode;
+
             OpenContactsCommand = new RelayCommand(OpenContacts);
             OpenNotesCommand = new RelayCommand(OpenNotes);
             OpenGroupsCommand = new RelayCommand(OpenGroups);
@@ -24,36 +42,62 @@ namespace Névjegyzék
 
         private void OpenContacts()
         {
-            OpenWindowIfNeeded<ContactsWindow>();
+            OpenWindowWithLoading<ContactsWindow>();
         }
 
         private void OpenNotes()
         {
-            OpenWindowIfNeeded<NotesWindow>();
+            OpenWindowWithLoading<NotesWindow>();
         }
 
         private void OpenGroups()
         {
-            OpenWindowIfNeeded<GroupsWindow>();
+            OpenWindowWithLoading<GroupsWindow>();
         }
 
-        private void OpenWindowIfNeeded<T>() where T : Window, new()
+        private async void OpenWindowWithLoading<T>() where T : Window, new()
         {
-            var window = System.Windows.Application.Current.Windows.OfType<T>().FirstOrDefault() ?? new T();
-
-            if (window.WindowState == WindowState.Minimized)
+            var existingWindow = System.Windows.Application.Current.Windows.OfType<T>().FirstOrDefault();
+            if (existingWindow != null)
             {
-                window.WindowState = WindowState.Normal;
+                if (existingWindow.WindowState == WindowState.Minimized)
+                {
+                    existingWindow.WindowState = WindowState.Normal;
+                }
+
+                existingWindow.Activate();
+                return;
             }
 
-            if (window.IsVisible == false)
+            var loadingWindow = new LoadingWindow(() => { });
+
+            await loadingWindow.ShowLoadingAsync(async token =>
             {
+                try
+                {
+                    await Task.Delay(3000, token);
+                }
+                catch (TaskCanceledException)
+                {
+                    return;
+                }
+
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var window = new T();
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.WindowState = WindowState.Normal;
+                }
+
                 window.Show();
-            }
-
-            window.Activate();
-            window.Topmost = true;
-            window.Topmost = false;
+                window.Activate();
+                window.Topmost = true;
+                window.Topmost = false;
+            });
         }
     }
 }

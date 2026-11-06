@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="MainWindow_Title">Address Book Manager - Home</sys:String>
+    <sys:String x:Key="MainWindow_SelectFunction">Select a function:</sys:String>
+    <sys:String x:Key="MainWindow_ManageContacts">Manage Contacts</sys:String>
+    <sys:String x:Key="MainWindow_ManageNotes">Manage Notes</sys:String>
+    <sys:String x:Key="MainWindow_ManageGroups">Manage Groups</sys:String>
+    <sys:String x:Key="MainWindow_LanguageLabel">Language:</sys:String>
+
+    <sys:String x:Key="ContactsWindow_Title">Contacts</sys:String>
+    <sys:String x:Key="ContactsWindow_Contacts">Contacts</sys:String>
+    <sys:String x:Key="ContactsWindow_Delete">Delete</sys:String>
+    <sys:String x:Key="ContactsWindow_Block">Block</sys:String>
+    <sys:String x:Key="ContactsWindow_Unblock">Unblock</sys:String>
+    <sys:String x:Key="ContactsWindow_Details">Contact details</sys:String>
+    <sys:String x:Key="ContactsWindow_Name">Name:</sys:String>
+    <sys:String x:Key="ContactsWindow_Email">Email:</sys:String>
+    <sys:String x:Key="ContactsWindow_Phone">Phone number:</sys:String>
+    <sys:String x:Key="ContactsWindow_Position">Position:</sys:String>
+    <sys:String x:Key="ContactsWindow_Address">Address:</sys:String>
+    <sys:String x:Key="ContactsWindow_BirthDate">Birth date:</sys:String>
+    <sys:String x:Key="ContactsWindow_Website">Website:</sys:String>
+    <sys:String x:Key="ContactsWindow_StatusBlocked">Status (Blocked):</sys:String>
+    <sys:String x:Key="ContactsWindow_BlockedSuffix"> (Blocked)</sys:String>
+    <sys:String x:Key="ContactsWindow_NewContact">New contact...</sys:String>
+    <sys:String x:Key="ContactsWindow_EditContact">Edit...</sys:String>
+
+    <sys:String x:Key="NotesWindow_Title">Notes</sys:String>
+    <sys:String x:Key="NotesWindow_Contacts">Contacts</sys:String>
+    <sys:String x:Key="NotesWindow_Notes">Notes</sys:String>
+    <sys:String x:Key="NotesWindow_TitleLabel">Title:</sys:String>
+    <sys:String x:Key="NotesWindow_DescriptionLabel">Description:</sys:String>
+    <sys:String x:Key="NotesWindow_Add">Add</sys:String>
+    <sys:String x:Key="NotesWindow_Edit">Edit</sys:String>
+    <sys:String x:Key="NotesWindow_DeleteSelected">Delete selected</sys:String>
+
+    <sys:String x:Key="GroupsWindow_Title">Groups</sys:String>
+    <sys:String x:Key="GroupsWindow_Groups">Groups</sys:String>
+    <sys:String x:Key="GroupsWindow_Members">Members</sys:String>
+    <sys:String x:Key="GroupsWindow_AddContacts">Add contacts</sys:String>
+    <sys:String x:Key="GroupsWindow_GroupNotes">Group notes</sys:String>
+    <sys:String x:Key="GroupsWindow_New">New</sys:String>
+    <sys:String x:Key="GroupsWindow_Edit">Edit</sys:String>
+    <sys:String x:Key="GroupsWindow_Delete">Delete</sys:String>
+    <sys:String x:Key="GroupsWindow_RemoveSelected">Remove selected</sys:String>
+    <sys:String x:Key="GroupsWindow_AddSelected">Add selected</sys:String>
+    <sys:String x:Key="GroupsWindow_AddNote">Add note</sys:String>
+    <sys:String x:Key="GroupsWindow_EditNote">Edit note</sys:String>
+    <sys:String x:Key="GroupsWindow_DeleteNotes">Delete notes</sys:String>
+    <sys:String x:Key="GroupsWindow_NoteTitle">Title</sys:String>
+    <sys:String x:Key="GroupsWindow_NoteDescription">Description</sys:String>
+
+    <sys:String x:Key="ContactEditWindow_Title">Edit contact</sys:String>
+    <sys:String x:Key="ContactEditWindow_Image">Image:</sys:String>
+    <sys:String x:Key="ContactEditWindow_Upload">Upload</sys:String>
+    <sys:String x:Key="ContactEditWindow_DeleteImage">Delete image</sys:String>
+    <sys:String x:Key="ContactEditWindow_Name">Name</sys:String>
+    <sys:String x:Key="ContactEditWindow_Email">Email</sys:String>
+    <sys:String x:Key="ContactEditWindow_Phone">Phone number</sys:String>
+    <sys:String x:Key="ContactEditWindow_Position">Position</sys:String>
+    <sys:String x:Key="ContactEditWindow_BirthDate">Birth date</sys:String>
+    <sys:String x:Key="ContactEditWindow_Website">Website</sys:String>
+    <sys:String x:Key="ContactEditWindow_Save">Save</sys:String>
+    <sys:String x:Key="ContactEditWindow_Cancel">Cancel</sys:String>
+
+    <sys:String x:Key="GroupEditWindow_Title">Edit group</sys:String>
+    <sys:String x:Key="GroupEditWindow_GroupName">Group name</sys:String>
+    <sys:String x:Key="GroupEditWindow_Save">Save</sys:String>
+    <sys:String x:Key="GroupEditWindow_Cancel">Cancel</sys:String>
+
+    <sys:String x:Key="NoteEditWindow_Title">Edit note</sys:String>
+    <sys:String x:Key="NoteEditWindow_NoteTitle">Note title</sys:String>
+    <sys:String x:Key="NoteEditWindow_Description">Description</sys:String>
+    <sys:String x:Key="NoteEditWindow_Save">Save</sys:String>
+    <sys:String x:Key="NoteEditWindow_Cancel">Cancel</sys:String>
+
+    <sys:String x:Key="Loading_Cancel">Cancel</sys:String>
+    <sys:String x:Key="Loading_Title">Loading...</sys:String>
+</ResourceDictionary>

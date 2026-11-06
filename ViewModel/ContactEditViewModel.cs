@@ -98,17 +98,68 @@ namespace Névjegyzék
         public Window Window { get; set; }
         public bool IsSaved { get; private set; } = false;
 
-        public string ContactName { get => _contactName; set => SetProperty(ref _contactName, value); }
-        public string ContactEmail { get => _contactEmail; set => SetProperty(ref _contactEmail, value); }
-        public string ContactPhone { get => _contactPhone; set => SetProperty(ref _contactPhone, value); }
+        public string ContactName
+        {
+            get => _contactName;
+            set
+            {
+                if (SetProperty(ref _contactName, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
+        }
+
+        public string ContactEmail
+        {
+            get => _contactEmail;
+            set
+            {
+                if (SetProperty(ref _contactEmail, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
+        }
+
+        public string ContactPhone
+        {
+            get => _contactPhone;
+            set
+            {
+                if (SetProperty(ref _contactPhone, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
+        }
+
         public string ContactPosition { get => _contactPosition; set => SetProperty(ref _contactPosition, value); }
         public string ContactAddress { get => _contactAddress; set => SetProperty(ref _contactAddress, value); }
         public DateTime? ContactBirthDate
         {
             get => _contactBirthDate;
-            set => SetProperty(ref _contactBirthDate, value);
+            set
+            {
+                if (SetProperty(ref _contactBirthDate, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
         }
-        public string ContactWebsite { get => _contactWebsite; set => SetProperty(ref _contactWebsite, value); }
+
+        public string ContactWebsite
+        {
+            get => _contactWebsite;
+            set
+            {
+                if (SetProperty(ref _contactWebsite, value))
+                {
+                    NotifySaveCommandChanged();
+                }
+            }
+        }
+
         public string ContactImagePath { get => _contactImagePath; set => SetProperty(ref _contactImagePath, value); }
         public BitmapImage ContactImageSource
         {
@@ -119,8 +170,13 @@ namespace Névjegyzék
 
         public ICommand UploadImageCommand { get; }
         public ICommand DeleteImageCommand { get; }
-        public ICommand SaveCommand { get; }
+        public RelayCommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
+
+        private void NotifySaveCommandChanged()
+        {
+            SaveCommand?.RaiseCanExecuteChanged();
+        }
 
         public ContactEditViewModel(
             Contact contact = null,
@@ -148,8 +204,13 @@ namespace Névjegyzék
 
             UploadImageCommand = new RelayCommand(UploadImage);
             DeleteImageCommand = new RelayCommand(DeleteImage);
-            SaveCommand = new RelayCommand(Save);
+            SaveCommand = new RelayCommand(Save, CanSave);
             CancelCommand = new RelayCommand(Cancel);
+        }
+
+        private bool CanSave()
+        {
+            return ValidateFields();
         }
 
         public void UploadImageFromFile(string filePath)
