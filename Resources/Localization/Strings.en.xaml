@@ -35,6 +35,9 @@
     <sys:String x:Key="NotesWindow_Add">Add</sys:String>
     <sys:String x:Key="NotesWindow_Edit">Edit</sys:String>
     <sys:String x:Key="NotesWindow_DeleteSelected">Delete selected</sys:String>
+    <sys:String x:Key="NotesWindow_RemoveSelected">Remove selected</sys:String>
+    <sys:String x:Key="NotesWindow_AllNotes">All notes</sys:String>
+    <sys:String x:Key="NotesWindow_AssignSelected">Assign selected</sys:String>
 
     <sys:String x:Key="GroupsWindow_Title">Groups</sys:String>
     <sys:String x:Key="GroupsWindow_Groups">Groups</sys:String>

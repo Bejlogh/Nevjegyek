@@ -35,6 +35,9 @@
     <sys:String x:Key="NotesWindow_Add">Hozzáadás</sys:String>
     <sys:String x:Key="NotesWindow_Edit">Szerkesztés</sys:String>
     <sys:String x:Key="NotesWindow_DeleteSelected">Kijelöltek törlése</sys:String>
+    <sys:String x:Key="NotesWindow_RemoveSelected">Kijelöltek eltávolítása</sys:String>
+    <sys:String x:Key="NotesWindow_AllNotes">Összes jegyzet</sys:String>
+    <sys:String x:Key="NotesWindow_AssignSelected">Hozzárendelés</sys:String>
 
     <sys:String x:Key="GroupsWindow_Title">Csoportok</sys:String>
     <sys:String x:Key="GroupsWindow_Groups">Csoportok</sys:String>

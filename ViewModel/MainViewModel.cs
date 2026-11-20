@@ -88,6 +88,7 @@ namespace Névjegyzék
                 }
 
                 var window = new T();
+                window.Owner = Application.Current.MainWindow;
                 if (window.WindowState == WindowState.Minimized)
                 {
                     window.WindowState = WindowState.Normal;

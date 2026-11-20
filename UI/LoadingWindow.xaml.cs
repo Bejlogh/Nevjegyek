@@ -11,6 +11,7 @@ namespace Névjegyzék
         private readonly Action _onCancelled;
 
         public bool IsCancelled { get; private set; }
+        private Window _owner;
 
         public LoadingWindow(Action onCancelled)
         {
@@ -20,6 +21,13 @@ namespace Névjegyzék
 
         public async Task ShowLoadingAsync(Func<CancellationToken, Task> openingAction)
         {
+            _owner = Application.Current.MainWindow;
+            if (_owner != null)
+            {
+                _owner.IsEnabled = false;
+            }
+
+            Owner = _owner;
             Show();
 
             var progressTask = Task.Run(async () =>
@@ -69,6 +77,16 @@ namespace Névjegyzék
             }
 
             Close();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            if (_owner != null)
+            {
+                _owner.IsEnabled = true;
+            }
+
+            base.OnClosed(e);
         }
 
         public void CancelLoading()

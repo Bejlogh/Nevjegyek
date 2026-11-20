@@ -65,6 +65,88 @@ namespace Névjegyzék
             return DataModel.LoadContacts();
         }
 
+        public static void SaveContactsAndNotes(List<Contact> contacts, IEnumerable<Note> allNotes)
+        {
+            foreach (var contact in contacts)
+            {
+                contact.EnsureId();
+                foreach (var note in contact.Notes)
+                {
+                    note.EnsureId();
+                    note.ContactId = contact.Id;
+                    note.ContactName = contact.Name;
+                    note.GroupId = string.Empty;
+                }
+            }
+
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Contact>));
+                using (StreamWriter writer = new StreamWriter(ContactsFilePath))
+                {
+                    serializer.Serialize(writer, contacts);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowXmlFileWarning(ContactsFilePath, ex);
+                return;
+            }
+
+            var normalizedNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var note in allNotes ?? Enumerable.Empty<Note>())
+            {
+                note.EnsureId();
+                normalizedNotes[note.Id] = note;
+            }
+
+            foreach (var note in normalizedNotes.Values)
+            {
+                var assignedToContact = contacts.Any(contact =>
+                    contact.Notes.Any(contactNote => contactNote.Id == note.Id));
+                var assignedToGroup = LoadGroups().Any(group =>
+                    group.Notes.Any(groupNote => groupNote.Id == note.Id));
+
+                if (!assignedToContact && !assignedToGroup)
+                {
+                    note.ContactId = string.Empty;
+                    note.ContactName = string.Empty;
+                    note.GroupId = string.Empty;
+                }
+            }
+
+            var contactAssignedIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var contact in contacts)
+            {
+                foreach (var note in contact.Notes)
+                {
+                    note.ContactId = contact.Id;
+                    note.ContactName = contact.Name;
+                    note.GroupId = string.Empty;
+                    normalizedNotes[note.Id] = note;
+                    contactAssignedIds.Add(note.Id);
+                }
+            }
+
+            foreach (var group in LoadGroups())
+            {
+                foreach (var note in group.Notes)
+                {
+                    note.EnsureId();
+                    if (!contactAssignedIds.Contains(note.Id) && normalizedNotes.ContainsKey(note.Id))
+                    {
+                        note.GroupId = group.Id;
+                        note.ContactId = string.Empty;
+                        note.ContactName = string.Empty;
+                        normalizedNotes[note.Id] = note;
+                    }
+                }
+            }
+
+            SaveNotes(normalizedNotes.Values);
+        }
+
         public static void ContactManaging(List<Contact> contacts)
         {
             try
