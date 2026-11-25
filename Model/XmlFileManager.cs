@@ -58,6 +58,25 @@ namespace Névjegyzék
         public static void SaveNotes(IEnumerable<Note> notes)
         {
             DataModel.SaveNotes(notes);
+            try
+            {
+                SynchronizeToSqlite();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Az XML mentése sikerült, de az SQLite-szinkronizálás nem sikerült.\n\nRészletek: {ex.Message}",
+                    "SQLite szinkronizálási hiba",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+        }
+
+        public static void SynchronizeToSqlite()
+        {
+            var contacts = DataModel.LoadContacts();
+            var notes = DataModel.LoadNotes();
+            SqliteDataManager.Rebuild(contacts, notes);
         }
 
         public static List<Contact> ContactLoading()

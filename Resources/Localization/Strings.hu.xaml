@@ -7,6 +7,10 @@
     <sys:String x:Key="MainWindow_ManageContacts">Névjegyek Kezelése</sys:String>
     <sys:String x:Key="MainWindow_ManageNotes">Jegyzetek Kezelése</sys:String>
     <sys:String x:Key="MainWindow_ManageGroups">Csoportok Kezelése</sys:String>
+    <sys:String x:Key="MainWindow_SynchronizeAll">Összes szinkronizálása</sys:String>
+    <sys:String x:Key="MainWindow_SyncTitle">Szinkronizálás</sys:String>
+    <sys:String x:Key="MainWindow_SyncSucceeded">A szinkronizálás sikeres.</sys:String>
+    <sys:String x:Key="MainWindow_SyncFailed">A szinkronizálás sikertelen.</sys:String>
     <sys:String x:Key="MainWindow_LanguageLabel">Nyelv:</sys:String>
 
     <sys:String x:Key="ContactsWindow_Title">Névjegyek</sys:String>

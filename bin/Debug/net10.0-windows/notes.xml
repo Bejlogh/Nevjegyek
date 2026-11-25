@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Note>
-    <Id>5c7a76f3f2c341ad81254ea76e6d35ab</Id>
-    <Title>sdfsdsad</Title>
-    <Description>dsfsdf sfsf sfsfsffsfsdfsfsd</Description>
+    <Id>12afd493fac74a27b639f322128c7757</Id>
+    <Title>fgdfg</Title>
+    <Description>gdg dfdg dgf</Description>
     <ContactName />
     <ContactId />
-    <GroupId />
+    <GroupId>5e5aba655232436997a392e6687bc64c</GroupId>
   </Note>
 </ArrayOfNote>

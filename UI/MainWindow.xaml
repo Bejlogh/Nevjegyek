@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Névjegyzék"
-        Title="{DynamicResource MainWindow_Title}" Height="360" Width="420" MinWidth="420" MinHeight="360"
+        Title="{DynamicResource MainWindow_Title}" Height="400" Width="420" MinWidth="420" MinHeight="360"
         WindowStartupLocation="CenterScreen" Background="{DynamicResource ModernBackgroundBrush}">
 
     <Window.DataContext>
@@ -24,7 +24,8 @@
 
             <Button Content="{DynamicResource MainWindow_ManageContacts}" Command="{Binding OpenContactsCommand}" Height="42" Margin="0,0,0,10" Style="{StaticResource RegularButtonStyle}"/>
             <Button Content="{DynamicResource MainWindow_ManageNotes}" Command="{Binding OpenNotesCommand}" Height="42" Margin="0,0,0,10" Style="{StaticResource RegularButtonStyle}"/>
-            <Button Content="{DynamicResource MainWindow_ManageGroups}" Command="{Binding OpenGroupsCommand}" Height="42" Style="{StaticResource RegularButtonStyle}"/>
+            <Button Content="{DynamicResource MainWindow_ManageGroups}" Command="{Binding OpenGroupsCommand}" Height="42" Margin="0,0,0,10" Style="{StaticResource RegularButtonStyle}"/>
+            <Button Content="{DynamicResource MainWindow_SynchronizeAll}" Command="{Binding SynchronizeAllCommand}" Height="42" Style="{StaticResource RegularButtonStyle}"/>
         </StackPanel>
     </Border>
 </Window>

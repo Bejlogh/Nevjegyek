@@ -12,8 +12,8 @@ TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_O
 
 12-1760355667
 
-251177457521
-206-155403781
+26-1558811865
+210-2067349084
 Resources\Localization\Strings.en.xaml;Resources\Localization\Strings.hu.xaml;Resources\Themes\ModernTheme.xaml;UI\App.xaml;UI\ContactEditWindow.xaml;UI\ContactsWindow.xaml;UI\GroupEditWindow.xaml;UI\GroupsWindow.xaml;UI\LoadingWindow.xaml;UI\MainWindow.xaml;UI\NoteEditWindow.xaml;UI\NotesWindow.xaml;
 
 False

@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\model\\sqlitedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:model\\sqlitedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\loadingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\loadingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\noteswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\noteswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\notesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\model\\xmlfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:model\\xmlfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,81 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "XmlFileManager.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\XmlFileManager.cs",
-              "RelativeDocumentMoniker": "Model\\XmlFileManager.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\XmlFileManager.cs",
-              "RelativeToolTip": "Model\\XmlFileManager.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "SqliteDataManager.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\SqliteDataManager.cs",
+              "RelativeDocumentMoniker": "Model\\SqliteDataManager.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\SqliteDataManager.cs",
+              "RelativeToolTip": "Model\\SqliteDataManager.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwJEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T13:23:39.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NotesViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\NotesViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\NotesViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\NotesViewModel.cs",
-              "RelativeToolTip": "ViewModel\\NotesViewModel.cs",
-              "ViewState": "AgIAANEBAAAAAAAAAAAYwOEBAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T12:16:04.948Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NotesWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NotesWindow.xaml",
-              "RelativeDocumentMoniker": "UI\\NotesWindow.xaml",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\NotesWindow.xaml",
-              "RelativeToolTip": "UI\\NotesWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-20T11:48:13.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoadingWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml.cs",
-              "RelativeDocumentMoniker": "UI\\LoadingWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml.cs",
-              "RelativeToolTip": "UI\\LoadingWindow.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAEwCwAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T10:32:04.474Z",
+              "WhenOpened": "2026-11-25T07:06:57.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\MainViewModel.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\MainViewModel.cs",
-              "RelativeToolTip": "ViewModel\\MainViewModel.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T10:32:04.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "UI\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml.cs",
               "RelativeToolTip": "UI\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-20T10:32:04.211Z",
               "EditorCaption": ""

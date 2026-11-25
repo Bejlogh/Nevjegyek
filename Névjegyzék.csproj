@@ -10,6 +10,11 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Névjegyzék.Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="11.0.0" />
   </ItemGroup>
 
 </Project>

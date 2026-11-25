@@ -7,6 +7,10 @@
     <sys:String x:Key="MainWindow_ManageContacts">Manage Contacts</sys:String>
     <sys:String x:Key="MainWindow_ManageNotes">Manage Notes</sys:String>
     <sys:String x:Key="MainWindow_ManageGroups">Manage Groups</sys:String>
+    <sys:String x:Key="MainWindow_SynchronizeAll">Synchronize All</sys:String>
+    <sys:String x:Key="MainWindow_SyncTitle">Synchronization</sys:String>
+    <sys:String x:Key="MainWindow_SyncSucceeded">Synchronization completed successfully.</sys:String>
+    <sys:String x:Key="MainWindow_SyncFailed">Synchronization failed.</sys:String>
     <sys:String x:Key="MainWindow_LanguageLabel">Language:</sys:String>
 
     <sys:String x:Key="ContactsWindow_Title">Contacts</sys:String>

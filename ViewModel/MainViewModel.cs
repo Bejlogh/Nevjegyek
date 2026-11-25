@@ -15,6 +15,7 @@ namespace Névjegyzék
         public ICommand OpenContactsCommand { get; }
         public ICommand OpenNotesCommand { get; }
         public ICommand OpenGroupsCommand { get; }
+        public ICommand SynchronizeAllCommand { get; }
 
         public ObservableCollection<KeyValuePair<string, string>> AvailableLanguages { get; } =
             new(LanguageManager.SupportedLanguages.Select(x => new KeyValuePair<string, string>(x.Key, x.Value)));
@@ -38,6 +39,7 @@ namespace Névjegyzék
             OpenContactsCommand = new RelayCommand(OpenContacts);
             OpenNotesCommand = new RelayCommand(OpenNotes);
             OpenGroupsCommand = new RelayCommand(OpenGroups);
+            SynchronizeAllCommand = new RelayCommand(SynchronizeAll);
         }
 
         private void OpenContacts()
@@ -53,6 +55,30 @@ namespace Névjegyzék
         private void OpenGroups()
         {
             OpenWindowWithLoading<GroupsWindow>();
+        }
+
+        private void SynchronizeAll()
+        {
+            try
+            {
+                XmlFileManager.SynchronizeToSqlite();
+                MessageBox.Show(
+                    Application.Current.TryFindResource("MainWindow_SyncSucceeded") as string
+                        ?? "A szinkronizálás sikeres.",
+                    Application.Current.TryFindResource("MainWindow_SyncTitle") as string
+                        ?? "Szinkronizálás",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"{Application.Current.TryFindResource("MainWindow_SyncFailed") as string ?? "A szinkronizálás sikertelen."}\n\n{ex.Message}",
+                    Application.Current.TryFindResource("MainWindow_SyncTitle") as string
+                        ?? "Szinkronizálás",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
         private async void OpenWindowWithLoading<T>() where T : Window, new()
