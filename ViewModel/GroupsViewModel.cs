@@ -91,8 +91,8 @@ namespace Névjegyzék
 
         private void RefreshData()
         {
-            var loadedGroups = XmlFileManager.LoadGroups();
-            var currentGroupName = SelectedGroup?.Name;
+            List<ContactGroup> loadedGroups = XmlFileManager.LoadGroups();
+            string? currentGroupName = SelectedGroup?.Name;
 
             Groups = new ObservableCollection<ContactGroup>(loadedGroups);
 
@@ -102,10 +102,10 @@ namespace Névjegyzék
                 OnPropertyChanged(nameof(SelectedGroup));
             }
 
-            var globalContacts = XmlFileManager.ContactLoading();
+            List<Contact> globalContacts = XmlFileManager.ContactLoading();
             AvailableContacts.Clear();
 
-            foreach (var c in globalContacts.Where(x => !x.IsBlocked))
+            foreach (Contact c in globalContacts.Where(x => !x.IsBlocked))
             {
                 c.LoadImageSource();
                 AvailableContacts.Add(new GroupSelectableContact { Contact = c, IsSelected = false });
@@ -125,7 +125,7 @@ namespace Névjegyzék
             GroupSelectableContacts.Clear();
             if (SelectedGroup?.Contacts != null)
             {
-                foreach (var c in SelectedGroup.Contacts.Where(x => !x.IsBlocked))
+                foreach (Contact c in SelectedGroup.Contacts.Where(x => !x.IsBlocked))
                 {
                     GroupSelectableContacts.Add(new GroupSelectableContact { Contact = c, IsSelected = false });
                 }
@@ -137,7 +137,7 @@ namespace Névjegyzék
             SelectableNotes = new ObservableCollection<SelectableNote>();
             if (_selectedGroup?.Notes != null)
             {
-                foreach (var note in _selectedGroup.Notes)
+                foreach (Note note in _selectedGroup.Notes)
                 {
                     SelectableNotes.Add(new SelectableNote { Note = note });
                 }
@@ -154,8 +154,8 @@ namespace Névjegyzék
 
         private void OpenAddGroupWindow()
         {
-            var vm = new GroupEditViewModel();
-            var win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
+            GroupEditViewModel vm = new GroupEditViewModel();
+            GroupEditWindow win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
             win.SetViewModel(vm);
 
             if (win.WindowState == WindowState.Minimized)
@@ -174,7 +174,7 @@ namespace Névjegyzék
 
             if (vm.IsSaved)
             {
-                var newGroup = new ContactGroup { Name = vm.GroupName };
+                ContactGroup newGroup = new ContactGroup { Name = vm.GroupName };
                 Groups.Add(newGroup);
                 SaveData();
             }
@@ -184,8 +184,8 @@ namespace Névjegyzék
         {
             if (SelectedGroup != null)
             {
-                var vm = new GroupEditViewModel(SelectedGroup.Name);
-                var win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
+                GroupEditViewModel vm = new GroupEditViewModel(SelectedGroup.Name);
+                GroupEditWindow win = Application.Current.Windows.OfType<GroupEditWindow>().FirstOrDefault() ?? new GroupEditWindow();
                 win.SetViewModel(vm);
 
                 if (win.WindowState == WindowState.Minimized)
@@ -207,7 +207,7 @@ namespace Névjegyzék
                     SelectedGroup.Name = vm.GroupName;
                     SaveData();
 
-                    var temp = SelectedGroup;
+                    ContactGroup temp = SelectedGroup;
                     Groups.Remove(temp);
                     Groups.Insert(0, temp);
                     SelectedGroup = temp;
@@ -216,7 +216,7 @@ namespace Névjegyzék
             }
             else
             {
-                MessageBox.Show("Válasszon ki egy csoportot a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupToEdit"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -224,7 +224,7 @@ namespace Névjegyzék
         {
             if (SelectedGroup != null)
             {
-                if (MessageBox.Show("Biztosan törölni szeretné a csoportot?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(LanguageManager.GetString("Dialogs_ConfirmDeleteGroup"), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Groups.Remove(SelectedGroup);
                     SaveData();
@@ -235,7 +235,7 @@ namespace Névjegyzék
             }
             else
             {
-                MessageBox.Show("Válasszon ki egy csoportot a törléshez!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupToDelete"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -246,13 +246,13 @@ namespace Névjegyzék
                 return;
             }
 
-            var contactsToAdd = contacts?.Where(c => c != null && !c.IsBlocked).ToList() ?? new List<Contact>();
+            List<Contact> contactsToAdd = contacts?.Where(c => c != null && !c.IsBlocked).ToList() ?? new List<Contact>();
             if (contactsToAdd.Count == 0)
             {
                 return;
             }
 
-            foreach (var contact in contactsToAdd)
+            foreach (Contact contact in contactsToAdd)
             {
                 if (!SelectedGroup.Contacts.Any(c => c.Name == contact.Name && c.Phone == contact.Phone))
                 {
@@ -260,7 +260,7 @@ namespace Névjegyzék
                 }
             }
 
-            foreach (var item in AvailableContacts.ToList())
+            foreach (GroupSelectableContact item in AvailableContacts.ToList())
             {
                 item.IsSelected = false;
             }
@@ -271,7 +271,7 @@ namespace Névjegyzék
 
         public void ClearAvailableContactSelection()
         {
-            foreach (var item in AvailableContacts.ToList())
+            foreach (GroupSelectableContact item in AvailableContacts.ToList())
             {
                 item.IsSelected = false;
             }
@@ -281,20 +281,20 @@ namespace Névjegyzék
         {
             if (SelectedGroup == null)
             {
-                MessageBox.Show("Először válasszon ki egy csoportot!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var selectedItems = AvailableContacts.Where(x => x.IsSelected).ToList();
+            List<GroupSelectableContact> selectedItems = AvailableContacts.Where(x => x.IsSelected).ToList();
             if (selectedItems.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy névjegyet a listából!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactFromList"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             AddContactsToSelectedGroup(selectedItems.Select(x => x.Contact));
 
-            foreach (var item in selectedItems)
+            foreach (GroupSelectableContact item in selectedItems)
             {
                 item.IsSelected = false;
             }
@@ -304,20 +304,20 @@ namespace Névjegyzék
         {
             if (SelectedGroup == null)
             {
-                MessageBox.Show("Először válasszon ki egy csoportot!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var itemsToRemove = GroupSelectableContacts.Where(x => x.IsSelected).ToList();
+            List<GroupSelectableContact> itemsToRemove = GroupSelectableContacts.Where(x => x.IsSelected).ToList();
             if (itemsToRemove.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy eltávolítandó névjegyet a csoport tagjai közül!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactToRemove"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show("Biztosan eltávolítja a kijelölt névjegyeket a csoportból?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(LanguageManager.GetString("Dialogs_ConfirmRemoveContactsFromGroup"), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var item in itemsToRemove)
+                foreach (GroupSelectableContact item in itemsToRemove)
                 {
                     SelectedGroup.Contacts.Remove(item.Contact);
                 }
@@ -330,12 +330,12 @@ namespace Névjegyzék
         {
             if (SelectedGroup == null)
             {
-                MessageBox.Show("Először válasszon ki egy csoportot!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var vm = new NoteEditViewModel();
-            var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+            NoteEditViewModel vm = new NoteEditViewModel();
+            NoteEditWindow win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
             win.SetViewModel(vm);
 
             if (win.WindowState == WindowState.Minimized)
@@ -354,7 +354,7 @@ namespace Névjegyzék
 
             if (vm.IsSaved)
             {
-                var newNote = new Note();
+                Note newNote = new Note();
                 vm.UpdateNoteModel(newNote);
                 newNote.GroupId = SelectedGroup.Id;
                 newNote.ContactName = SelectedGroup.Name;
@@ -368,8 +368,8 @@ namespace Névjegyzék
         {
             if (SelectedSelectableNote?.Note != null)
             {
-                var vm = new NoteEditViewModel(SelectedSelectableNote.Note);
-                var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+                NoteEditViewModel vm = new NoteEditViewModel(SelectedSelectableNote.Note);
+                NoteEditWindow win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
                 win.SetViewModel(vm);
 
                 if (win.WindowState == WindowState.Minimized)
@@ -391,7 +391,7 @@ namespace Névjegyzék
                     vm.UpdateNoteModel(SelectedSelectableNote.Note);
                     SyncNotesToGroup();
 
-                    var temp = SelectedSelectableNote;
+                    SelectableNote temp = SelectedSelectableNote;
                     SelectableNotes.Remove(temp);
                     SelectableNotes.Insert(0, temp);
                     SelectedSelectableNote = temp;
@@ -400,7 +400,7 @@ namespace Névjegyzék
             }
             else
             {
-                MessageBox.Show("Válasszon ki egy jegyzetet a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectNoteToEdit"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -408,20 +408,20 @@ namespace Névjegyzék
         {
             if (SelectedGroup == null)
             {
-                MessageBox.Show("Először válasszon ki egy csoportot!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var toDelete = SelectableNotes.Where(x => x.IsSelectedForDelete).ToList();
+            List<SelectableNote> toDelete = SelectableNotes.Where(x => x.IsSelectedForDelete).ToList();
             if (toDelete.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy törlendő jegyzetet a jelölőnégyzettel!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectGroupNotesToDelete"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan törölni szeretné a kiválasztott {toDelete.Count} jegyzetet?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmDeleteGroupNotes"), toDelete.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var item in toDelete)
+                foreach (SelectableNote item in toDelete)
                 {
                     SelectableNotes.Remove(item);
                 }

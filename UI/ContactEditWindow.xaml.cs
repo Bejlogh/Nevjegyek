@@ -30,7 +30,7 @@ namespace Névjegyzék
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                string[]? files = e.Data.GetData(DataFormats.FileDrop) as string[];
                 if (files != null && files.Length > 0 && ViewModel != null && ViewModel.IsSupportedImageFile(files[0]))
                 {
                     e.Effects = DragDropEffects.Copy;
@@ -55,16 +55,16 @@ namespace Névjegyzék
                 return;
             }
 
-            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            string[]? files = e.Data.GetData(DataFormats.FileDrop) as string[];
             if (files == null || files.Length == 0)
             {
                 return;
             }
 
-            var filePath = files[0];
+            string filePath = files[0];
             if (!ViewModel.IsSupportedImageFile(filePath) || !File.Exists(filePath))
             {
-                MessageBox.Show("Kérjük, kép fájlt húzzon ide. Engedélyezett formátumok: .jpg, .jpeg, .png, .bmp.", "Érvénytelen fájl", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_ImageDropInvalid"), LanguageManager.GetString("Dialogs_InvalidFileTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 e.Handled = true;
                 return;
             }

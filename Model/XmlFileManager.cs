@@ -44,8 +44,8 @@ namespace Névjegyzék
         private static void ShowXmlFileWarning(string fileName, Exception exception)
         {
             MessageBox.Show(
-                $"A(z) '{fileName}' fájl sérült vagy hibás formátumú, ezért a program a hibás adatfájlt figyelmen kívül hagyja.\n\nRészletek: {exception.Message}",
-                "Adatfájl hiba",
+                $"{string.Format(LanguageManager.GetString("Dialogs_XmlFileCorrupt"), fileName)}\n\n{LanguageManager.GetString("Dialogs_DetailsLabel")} {exception.Message}",
+                LanguageManager.GetString("Dialogs_XmlFileErrorTitle"),
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
@@ -65,8 +65,8 @@ namespace Névjegyzék
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"Az XML mentése sikerült, de az SQLite-szinkronizálás nem sikerült.\n\nRészletek: {ex.Message}",
-                    "SQLite szinkronizálási hiba",
+                    $"{LanguageManager.GetString("Dialogs_XmlSavedSqliteSyncFailed")}\n\n{LanguageManager.GetString("Dialogs_DetailsLabel")} {ex.Message}",
+                    LanguageManager.GetString("Dialogs_SqliteSyncErrorTitle"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
             }
@@ -74,9 +74,54 @@ namespace Névjegyzék
 
         public static void SynchronizeToSqlite()
         {
-            var contacts = DataModel.LoadContacts();
-            var notes = DataModel.LoadNotes();
-            SqliteDataManager.Rebuild(contacts, notes);
+            List<Contact> contacts = DataModel.LoadContacts();
+            List<Note> notes = DataModel.LoadNotes();
+            List<ContactGroup> groups = DataModel.LoadGroups();
+            SqliteDataManager.Rebuild(contacts, notes, groups);
+        }
+
+        public static void SynchronizeFromSqlite()
+        {
+            List<ContactGroup>? legacyGroups = SqliteDataManager.HasGroupSchema
+                ? null
+                : DataModel.LoadGroups();
+            (List<Contact> Contacts, List<Note> Notes, List<ContactGroup> Groups) snapshot = SqliteDataManager.LoadSnapshot();
+            List<ContactGroup> groups = snapshot.Groups;
+
+            if (legacyGroups != null)
+            {
+                Dictionary<string, Contact> contactsById = snapshot.Contacts.ToDictionary(contact => contact.Id, StringComparer.OrdinalIgnoreCase);
+                foreach (ContactGroup group in legacyGroups)
+                {
+                    group.Contacts = new System.Collections.ObjectModel.ObservableCollection<Contact>(
+                        group.Contacts
+                            .Select(contact => contactsById.TryGetValue(contact.Id, out Contact updatedContact)
+                                ? updatedContact
+                                : snapshot.Contacts.FirstOrDefault(candidate =>
+                                    candidate.Name == contact.Name && candidate.Phone == contact.Phone))
+                            .Where(contact => contact != null));
+
+                    group.Notes = new System.Collections.ObjectModel.ObservableCollection<Note>(
+                        group.Notes
+                            .Select(groupNote => snapshot.Notes.FirstOrDefault(note =>
+                                string.Equals(note.Id, groupNote.Id, StringComparison.OrdinalIgnoreCase)))
+                            .Where(note => note != null));
+
+                    foreach (Note note in group.Notes)
+                    {
+                        note.GroupId = group.Id;
+                        note.ContactId = string.Empty;
+                        note.ContactName = string.Empty;
+                    }
+                }
+
+                SqliteDataManager.Rebuild(snapshot.Contacts, snapshot.Notes, legacyGroups);
+                groups = legacyGroups;
+            }
+
+            DataModel.SaveContacts(snapshot.Contacts);
+            DataModel.SaveGroups(groups);
+            DataModel.SaveNotes(snapshot.Notes);
         }
 
         public static List<Contact> ContactLoading()
@@ -86,10 +131,10 @@ namespace Névjegyzék
 
         public static void SaveContactsAndNotes(List<Contact> contacts, IEnumerable<Note> allNotes)
         {
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
                 contact.EnsureId();
-                foreach (var note in contact.Notes)
+                foreach (Note note in contact.Notes)
                 {
                     note.EnsureId();
                     note.ContactId = contact.Id;
@@ -112,19 +157,19 @@ namespace Névjegyzék
                 return;
             }
 
-            var normalizedNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+            Dictionary<string, Note> normalizedNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var note in allNotes ?? Enumerable.Empty<Note>())
+            foreach (Note note in allNotes ?? Enumerable.Empty<Note>())
             {
                 note.EnsureId();
                 normalizedNotes[note.Id] = note;
             }
 
-            foreach (var note in normalizedNotes.Values)
+            foreach (Note note in normalizedNotes.Values)
             {
-                var assignedToContact = contacts.Any(contact =>
+                bool assignedToContact = contacts.Any(contact =>
                     contact.Notes.Any(contactNote => contactNote.Id == note.Id));
-                var assignedToGroup = LoadGroups().Any(group =>
+                bool assignedToGroup = LoadGroups().Any(group =>
                     group.Notes.Any(groupNote => groupNote.Id == note.Id));
 
                 if (!assignedToContact && !assignedToGroup)
@@ -135,10 +180,10 @@ namespace Névjegyzék
                 }
             }
 
-            var contactAssignedIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var contact in contacts)
+            HashSet<string> contactAssignedIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (Contact contact in contacts)
             {
-                foreach (var note in contact.Notes)
+                foreach (Note note in contact.Notes)
                 {
                     note.ContactId = contact.Id;
                     note.ContactName = contact.Name;
@@ -148,9 +193,9 @@ namespace Névjegyzék
                 }
             }
 
-            foreach (var group in LoadGroups())
+            foreach (ContactGroup group in LoadGroups())
             {
-                foreach (var note in group.Notes)
+                foreach (Note note in group.Notes)
                 {
                     note.EnsureId();
                     if (!contactAssignedIds.Contains(note.Id) && normalizedNotes.ContainsKey(note.Id))
@@ -182,13 +227,13 @@ namespace Névjegyzék
                 return;
             }
 
-            var groups = LoadGroups();
-            var allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+            List<ContactGroup> groups = LoadGroups();
+            Dictionary<string, Note> allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
                 contact.EnsureId();
-                foreach (var note in contact.Notes)
+                foreach (Note note in contact.Notes)
                 {
                     note.EnsureId();
                     note.ContactId = contact.Id;
@@ -198,10 +243,10 @@ namespace Névjegyzék
                 }
             }
 
-            foreach (var group in groups)
+            foreach (ContactGroup group in groups)
             {
                 group.EnsureId();
-                foreach (var note in group.Notes)
+                foreach (Note note in group.Notes)
                 {
                     note.EnsureId();
                     note.GroupId = group.Id;
@@ -229,7 +274,7 @@ namespace Névjegyzék
                 {
                     if (image.Source is BitmapImage bitmapImage)
                     {
-                        var uri = bitmapImage.UriSource;
+                        Uri? uri = bitmapImage.UriSource;
                         if (uri == null || string.Equals(Path.GetFullPath(uri.LocalPath), normalizedTarget, StringComparison.OrdinalIgnoreCase))
                         {
                             image.Source = null;
@@ -273,7 +318,7 @@ namespace Névjegyzék
 
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(dependencyObject); i++)
             {
-                foreach (var child in FindImages(VisualTreeHelper.GetChild(dependencyObject, i)))
+                foreach (Image child in FindImages(VisualTreeHelper.GetChild(dependencyObject, i)))
                 {
                     yield return child;
                 }
@@ -374,12 +419,12 @@ namespace Névjegyzék
         {
             DataModel.SaveGroups(groups);
 
-            var contacts = ContactLoading();
-            var allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
+            List<Contact> contacts = ContactLoading();
+            Dictionary<string, Note> allNotes = new Dictionary<string, Note>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
-                foreach (var note in contact.Notes)
+                foreach (Note note in contact.Notes)
                 {
                     note.EnsureId();
                     note.ContactId = contact.Id;
@@ -389,9 +434,9 @@ namespace Névjegyzék
                 }
             }
 
-            foreach (var group in groups)
+            foreach (ContactGroup group in groups)
             {
-                foreach (var note in group.Notes)
+                foreach (Note note in group.Notes)
                 {
                     note.EnsureId();
                     note.GroupId = group.Id;

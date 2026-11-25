@@ -54,9 +54,9 @@ namespace Névjegyzék
 
         private void LoadContacts()
         {
-            var loaded = XmlFileManager.ContactLoading();
-            var list = new List<SelectableContact>();
-            foreach (var c in loaded)
+            List<Contact> loaded = XmlFileManager.ContactLoading();
+            List<SelectableContact> list = new List<SelectableContact>();
+            foreach (Contact c in loaded)
             {
                 c.LoadImageSource();
                 list.Add(new SelectableContact { Contact = c });
@@ -73,9 +73,9 @@ namespace Névjegyzék
 
         private void SortContacts()
         {
-            var sortedContacts = SortContacts(Contacts).ToList();
+            List<SelectableContact> sortedContacts = SortContacts(Contacts).ToList();
             Contacts.Clear();
-            foreach (var contact in sortedContacts)
+            foreach (SelectableContact contact in sortedContacts)
             {
                 Contacts.Add(contact);
             }
@@ -83,18 +83,18 @@ namespace Névjegyzék
 
         private void UnblockSelectedContacts()
         {
-            var toUnblock = Contacts
+            List<SelectableContact> toUnblock = Contacts
                 .Where(x => x.IsSelectedForDelete && x.Contact.IsBlocked)
                 .ToList();
             if (toUnblock.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy letiltott névjegyet a feloldáshoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectBlockedContactToUnblock"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan fel szeretné oldani a kiválasztott {toUnblock.Count} névjegy letiltását?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmUnblockContacts"), toUnblock.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var item in toUnblock)
+                foreach (SelectableContact item in toUnblock)
                 {
                     item.Contact.IsBlocked = false;
                     item.IsSelectedForDelete = false;
@@ -107,16 +107,16 @@ namespace Névjegyzék
 
         private void BlockSelectedContacts()
         {
-            var toBlock = Contacts.Where(x => x.IsSelectedForDelete).ToList();
+            List<SelectableContact> toBlock = Contacts.Where(x => x.IsSelectedForDelete).ToList();
             if (toBlock.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy letiltandó névjegyet a jelölőnégyzettel!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactToBlock"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan le szeretné tiltani a kiválasztott {toBlock.Count} névjegyet?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmBlockContacts"), toBlock.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var item in toBlock)
+                foreach (SelectableContact item in toBlock)
                 {
                     item.Contact.IsBlocked = true;
                     item.IsSelectedForDelete = false;
@@ -129,7 +129,7 @@ namespace Névjegyzék
 
         private void SaveContacts()
         {
-            var rawList = Contacts.Select(sc => sc.Contact).ToList();
+            List<Contact> rawList = Contacts.Select(sc => sc.Contact).ToList();
             XmlFileManager.ContactManaging(rawList);
         }
 
@@ -156,12 +156,12 @@ namespace Névjegyzék
 
         private void OpenAddWindow()
         {
-            var vm = new ContactEditViewModel(
+            ContactEditViewModel vm = new ContactEditViewModel(
                 isDuplicateName: name => HasDuplicateName(name),
                 isDuplicateEmail: email => HasDuplicateEmail(email),
                 isDuplicatePhone: phone => HasDuplicatePhone(phone));
 
-            var win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
+            ContactEditWindow win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
             win.SetViewModel(vm);
 
             if (win.WindowState == WindowState.Minimized)
@@ -180,7 +180,7 @@ namespace Névjegyzék
 
             if (vm.IsSaved)
             {
-                var newContact = new Contact();
+                Contact newContact = new Contact();
                 vm.UpdateContactModel(newContact);
 
                 Contacts.Add(new SelectableContact { Contact = newContact });
@@ -191,16 +191,16 @@ namespace Névjegyzék
 
         private void OpenEditWindow()
         {
-            var editingContact = SelectedContact?.Contact;
+            Contact? editingContact = SelectedContact?.Contact;
             if (editingContact != null)
             {
-                var vm = new ContactEditViewModel(
+                ContactEditViewModel vm = new ContactEditViewModel(
                     editingContact,
                     name => HasDuplicateName(name, editingContact),
                     email => HasDuplicateEmail(email, editingContact),
                     phone => HasDuplicatePhone(phone, editingContact));
 
-                var win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
+                ContactEditWindow win = Application.Current.Windows.OfType<ContactEditWindow>().FirstOrDefault() ?? new ContactEditWindow();
                 win.SetViewModel(vm);
 
                 if (win.WindowState == WindowState.Minimized)
@@ -226,26 +226,26 @@ namespace Névjegyzék
             }
             else
             {
-                MessageBox.Show("Válasszon ki egy névjegyet a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactToEdit"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void DeleteSelectedContacts()
         {
-            var toDelete = Contacts.Where(x => x.IsSelectedForDelete).ToList();
+            List<SelectableContact> toDelete = Contacts.Where(x => x.IsSelectedForDelete).ToList();
             if (toDelete.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy törlendő névjegyet a jelölőnégyzettel!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactsToDelete"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan törölni szeretné a kiválasztott {toDelete.Count} névjegyet?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmDeleteContacts"), toDelete.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 SelectedContact = null;
 
-                foreach (var item in toDelete)
+                foreach (SelectableContact item in toDelete)
                 {
-                    var imageToDelete = item.Contact.ImagePath;
+                    string imageToDelete = item.Contact.ImagePath;
                     item.Contact.ImagePath = string.Empty;
                     item.Contact.ImageSource = null;
                     Contacts.Remove(item);
@@ -253,13 +253,13 @@ namespace Névjegyzék
                 }
                 SaveContacts();
 
-                var groups = XmlFileManager.LoadGroups();
+                List<ContactGroup> groups = XmlFileManager.LoadGroups();
                 bool groupsChanged = false;
-                foreach (var group in groups)
+                foreach (ContactGroup group in groups)
                 {
-                    foreach (var deletedItem in toDelete)
+                    foreach (SelectableContact deletedItem in toDelete)
                     {
-                        var contactToRemove = group.Contacts.FirstOrDefault(c => c.Name == deletedItem.Contact.Name && c.Phone == deletedItem.Contact.Phone);
+                        Contact? contactToRemove = group.Contacts.FirstOrDefault(c => c.Name == deletedItem.Contact.Name && c.Phone == deletedItem.Contact.Phone);
                         if (contactToRemove != null)
                         {
                             group.Contacts.Remove(contactToRemove);

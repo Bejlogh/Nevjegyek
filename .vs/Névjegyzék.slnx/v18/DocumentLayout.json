@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\model\\sqlitedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:model\\sqlitedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\loadingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\loadingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\ui\\loadingwindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:ui\\loadingwindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|c:\\users\\tanulo\\source\\repos\\n\u00E9vjegyz\u00E9k\\n\u00E9vjegyz\u00E9k.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D2EC6D89-AA77-22B0-F271-F5F5D82F7695}|N\u00E9vjegyz\u00E9k.csproj|solutionrelative:n\u00E9vjegyz\u00E9k.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,22 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SqliteDataManager.cs",
-              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\SqliteDataManager.cs",
-              "RelativeDocumentMoniker": "Model\\SqliteDataManager.cs",
-              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\Model\\SqliteDataManager.cs",
-              "RelativeToolTip": "Model\\SqliteDataManager.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwJEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T07:06:57.967Z",
-              "EditorCaption": "",
-              "OwnerCaption": "%2"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -42,10 +44,80 @@
               "RelativeDocumentMoniker": "UI\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml.cs",
               "RelativeToolTip": "UI\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T10:32:04.211Z",
+              "WhenOpened": "2026-11-25T14:19:57.026Z",
+              "EditorCaption": "",
               "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\ViewModel\\MainViewModel.cs",
+              "RelativeToolTip": "ViewModel\\MainViewModel.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAgwIEAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-25T14:19:40.236Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\MainWindow.xaml",
+              "RelativeToolTip": "UI\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-25T14:19:05.883Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoadingWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml.cs",
+              "RelativeDocumentMoniker": "UI\\LoadingWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml.cs",
+              "RelativeToolTip": "UI\\LoadingWindow.xaml.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswCYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-25T14:15:37.779Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoadingWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml",
+              "RelativeDocumentMoniker": "UI\\LoadingWindow.xaml",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\UI\\LoadingWindow.xaml",
+              "RelativeToolTip": "UI\\LoadingWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-25T14:15:22.995Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "N\u00E9vjegyz\u00E9k.csproj",
+              "DocumentMoniker": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\N\u00E9vjegyz\u00E9k.csproj",
+              "RelativeDocumentMoniker": "N\u00E9vjegyz\u00E9k.csproj",
+              "ToolTip": "C:\\Users\\Tanulo\\source\\repos\\N\u00E9vjegyz\u00E9k\\N\u00E9vjegyz\u00E9k.csproj",
+              "RelativeToolTip": "N\u00E9vjegyz\u00E9k.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-11-25T12:41:43.589Z",
+              "EditorCaption": "",
+              "OwnerCaption": "N\u00E9vjegyz\u00E9k.csproj"
             }
           ]
         }

@@ -225,7 +225,7 @@ namespace Névjegyzék
 
             if (Array.IndexOf(allowedExtensions, extension?.ToLowerInvariant()) < 0)
             {
-                MessageBox.Show("Kérjük, képfájlt töltsön fel (.jpg, .jpeg, .png, .bmp).", "Érvénytelen fájl", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_ImageUploadInvalid"), LanguageManager.GetString("Dialogs_InvalidFileTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -237,13 +237,13 @@ namespace Névjegyzék
 
                 File.Copy(filePath, destinationPath, true);
                 ContactImagePath = destinationPath;
-                var temp = new Contact { ImagePath = destinationPath };
+                Contact temp = new Contact { ImagePath = destinationPath };
                 temp.LoadImageSource();
                 ContactImageSource = temp.ImageSource;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Hiba a kép feltöltése közben: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{LanguageManager.GetString("Dialogs_ImageUploadFailed")} {ex.Message}", LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -274,13 +274,13 @@ namespace Névjegyzék
 
         private void DeleteImage()
         {
-            var imageToDelete = ContactImagePath;
+            string imageToDelete = ContactImagePath;
             ContactImagePath = string.Empty;
             ContactImageSource = null;
 
             if (!string.IsNullOrWhiteSpace(imageToDelete))
             {
-                var temp = new Contact { ImagePath = imageToDelete };
+                Contact temp = new Contact { ImagePath = imageToDelete };
                 XmlFileManager.DeleteContactImage(temp);
             }
         }
@@ -302,7 +302,7 @@ namespace Névjegyzék
                 "yyyy/M/d"
             };
 
-            if (DateTime.TryParseExact(date, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+            if (DateTime.TryParseExact(date, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 return parsedDate;
             }
@@ -324,14 +324,14 @@ namespace Névjegyzék
                 return true;
             }
 
-            var minimumBirthDate = DateTime.Today.AddYears(-18);
+            DateTime minimumBirthDate = DateTime.Today.AddYears(-18);
             return date.Value <= DateTime.Today && date.Value <= minimumBirthDate;
         }
         private bool WebsiteMatch(string site) => string.IsNullOrEmpty(site) || Regex.IsMatch(site, @"^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[^\s]*)?$");
 
         private bool ValidateFields()
         {
-            var propertyNames = new[]
+            string[] propertyNames = new[]
             {
                 nameof(ContactName),
                 nameof(ContactPhone),
@@ -340,9 +340,9 @@ namespace Névjegyzék
                 nameof(ContactWebsite)
             };
 
-            foreach (var propertyName in propertyNames)
+            foreach (string propertyName in propertyNames)
             {
-                var error = this[propertyName];
+                string error = this[propertyName];
                 if (!string.IsNullOrWhiteSpace(error))
                 {
                     return false;
@@ -372,7 +372,7 @@ namespace Névjegyzék
                 return;
             }
 
-            var oldImagePath = contact.ImagePath;
+            string oldImagePath = contact.ImagePath;
 
             contact.Name = ContactName;
             contact.Email = ContactEmail;

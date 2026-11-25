@@ -164,8 +164,8 @@ namespace Névjegyzék
             try
             {
                 byte[] imageBytes = File.ReadAllBytes(ImagePath);
-                using var memoryStream = new MemoryStream(imageBytes);
-                var bitmap = new BitmapImage();
+                using MemoryStream memoryStream = new MemoryStream(imageBytes);
+                BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.StreamSource = memoryStream;

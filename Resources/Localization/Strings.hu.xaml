@@ -12,6 +12,10 @@
     <sys:String x:Key="MainWindow_SyncSucceeded">A szinkronizálás sikeres.</sys:String>
     <sys:String x:Key="MainWindow_SyncFailed">A szinkronizálás sikertelen.</sys:String>
     <sys:String x:Key="MainWindow_LanguageLabel">Nyelv:</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceLabel">Szinkronizálás forrása:</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceXml">XML-fájl</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceSqlite">SQLite-adatbázis</sys:String>
+    <sys:String x:Key="MainWindow_SyncSqliteMissing">Az SQLite-adatbázis nem található. Először szinkronizáljon XML-ből SQLite-ba.</sys:String>
 
     <sys:String x:Key="ContactsWindow_Title">Névjegyek</sys:String>
     <sys:String x:Key="ContactsWindow_Contacts">Névjegyek</sys:String>
@@ -85,4 +89,39 @@
 
     <sys:String x:Key="Loading_Cancel">Mégse</sys:String>
     <sys:String x:Key="Loading_Title">Betöltés...</sys:String>
+
+    <sys:String x:Key="Dialogs_ErrorTitle">Hiba</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmationTitle">Megerősítés</sys:String>
+    <sys:String x:Key="Dialogs_InvalidFileTitle">Érvénytelen fájl</sys:String>
+    <sys:String x:Key="Dialogs_XmlFileErrorTitle">Adatfájl hiba</sys:String>
+    <sys:String x:Key="Dialogs_SqliteSyncErrorTitle">SQLite szinkronizálási hiba</sys:String>
+    <sys:String x:Key="Dialogs_DetailsLabel">Részletek:</sys:String>
+    <sys:String x:Key="Dialogs_XmlFileCorrupt">A(z) '{0}' fájl sérült vagy hibás formátumú, ezért a program a hibás adatfájlt figyelmen kívül hagyja.</sys:String>
+    <sys:String x:Key="Dialogs_XmlSavedSqliteSyncFailed">Az XML mentése sikerült, de az SQLite-szinkronizálás nem sikerült.</sys:String>
+    <sys:String x:Key="Dialogs_ImageDropInvalid">Kérjük, képfájlt húzzon ide. Engedélyezett formátumok: .jpg, .jpeg, .png, .bmp.</sys:String>
+    <sys:String x:Key="Dialogs_ImageUploadInvalid">Kérjük, képfájlt töltsön fel (.jpg, .jpeg, .png, .bmp).</sys:String>
+    <sys:String x:Key="Dialogs_ImageUploadFailed">Hiba a kép feltöltése közben:</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupToEdit">Válasszon ki egy csoportot a módosításhoz!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteGroup">Biztosan törölni szeretné a csoportot?</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupToDelete">Válasszon ki egy csoportot a törléshez!</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupFirst">Először válasszon ki egy csoportot!</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactFromList">Jelöljön ki legalább egy névjegyet a listából!</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToRemove">Jelöljön ki legalább egy eltávolítandó névjegyet a csoport tagjai közül!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmRemoveContactsFromGroup">Biztosan eltávolítja a kijelölt névjegyeket a csoportból?</sys:String>
+    <sys:String x:Key="Dialogs_SelectNoteToEdit">Válasszon ki egy jegyzetet a módosításhoz!</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupNotesToDelete">Jelöljön ki legalább egy törlendő jegyzetet a jelölőnégyzettel!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteGroupNotes">Biztosan törölni szeretné a kiválasztott {0} jegyzetet?</sys:String>
+    <sys:String x:Key="Dialogs_SelectBlockedContactToUnblock">Jelöljön ki legalább egy letiltott névjegyet a feloldáshoz!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmUnblockContacts">Biztosan fel szeretné oldani a kiválasztott {0} névjegy letiltását?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToBlock">Jelöljön ki legalább egy letiltandó névjegyet a jelölőnégyzettel!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmBlockContacts">Biztosan le szeretné tiltani a kiválasztott {0} névjegyet?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToEdit">Válasszon ki egy névjegyet a módosításhoz!</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactsToDelete">Jelöljön ki legalább egy törlendő névjegyet a jelölőnégyzettel!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteContacts">Biztosan törölni szeretné a kiválasztott {0} névjegyet?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactFirst">Először válasszon ki egy névjegyet!</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToAssign">Jelöljön ki legalább egy hozzárendelendő jegyzetet!</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToRemove">Jelöljön ki legalább egy eltávolítandó jegyzetet!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmRemoveNotesFromContact">Biztosan eltávolítja a kiválasztott {0} jegyzetet erről a névjegyről?</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToDelete">Jelöljön ki vagy válasszon ki törlendő jegyzetet!</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteAllNotes">Biztosan törli a kiválasztott {0} jegyzetet az összes jegyzet közül?</sys:String>
 </ResourceDictionary>

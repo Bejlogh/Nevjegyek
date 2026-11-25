@@ -17,11 +17,11 @@ namespace Névjegyzék
             set => SetProperty(ref _isSelectedForDelete, value);
         }
 
-        private bool _isSelectedForAssignment;
-        public bool IsSelectedForAssignment
+        private bool _isSelected;
+        public bool IsSelected
         {
-            get => _isSelectedForAssignment;
-            set => SetProperty(ref _isSelectedForAssignment, value);
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
         }
     }
 
@@ -150,9 +150,9 @@ namespace Névjegyzék
 
         private void LoadContacts()
         {
-            var loaded = XmlFileManager.ContactLoading();
+            List<Contact> loaded = XmlFileManager.ContactLoading();
             Contacts = new ObservableCollection<Contact>(loaded.Where(x => !x.IsBlocked));
-            foreach (var contact in Contacts)
+            foreach (Contact contact in Contacts)
             {
                 contact.LoadImageSource();
             }
@@ -171,7 +171,7 @@ namespace Névjegyzék
             SelectableNotes = new ObservableCollection<SelectableNote>();
             if (_selectedContact?.Notes != null)
             {
-                foreach (var note in _selectedContact.Notes)
+                foreach (Note note in _selectedContact.Notes)
                 {
                     SelectableNotes.Add(new SelectableNote { Note = note });
                 }
@@ -181,18 +181,18 @@ namespace Névjegyzék
 
         private void SaveChanges()
         {
-            var allContacts = XmlFileManager.ContactLoading();
-            var latestNotes = AllSelectableNotes?.Select(sn => sn.Note).ToList()
+            List<Contact> allContacts = XmlFileManager.ContactLoading();
+            List<Note> latestNotes = AllSelectableNotes?.Select(sn => sn.Note).ToList()
                 ?? new System.Collections.Generic.List<Note>();
 
-            foreach (var contact in allContacts)
+            foreach (Contact contact in allContacts)
             {
-                foreach (var note in contact.Notes.ToList())
+                foreach (Note note in contact.Notes.ToList())
                 {
-                    var updated = latestNotes.FirstOrDefault(n => n.Id == note.Id);
+                    Note updated = latestNotes.FirstOrDefault(n => n.Id == note.Id);
                     if (updated != null)
                     {
-                        var index = contact.Notes.IndexOf(note);
+                        int index = contact.Notes.IndexOf(note);
                         if (index >= 0)
                         {
                             contact.Notes[index] = updated;
@@ -203,12 +203,12 @@ namespace Névjegyzék
 
             if (_selectedContact != null)
             {
-                var target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
+                Contact? target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
                     ?? allContacts.FirstOrDefault(c => c.Name == _selectedContact.Name && c.Phone == _selectedContact.Phone);
 
                 if (target != null)
                 {
-                    var assignedNotes = (SelectableNotes ?? new ObservableCollection<SelectableNote>())
+                    List<Note> assignedNotes = (SelectableNotes ?? new ObservableCollection<SelectableNote>())
                         .Select(sn => latestNotes.FirstOrDefault(n => n.Id == sn.Note.Id) ?? sn.Note)
                         .ToList();
                     target.Notes = new ObservableCollection<Note>(assignedNotes);
@@ -226,7 +226,7 @@ namespace Névjegyzék
 
         private bool HasDuplicateTitle(string title, Note noteToIgnore = null)
         {
-            var allNotes = AllSelectableNotes?.Select(sn => sn.Note) ?? Enumerable.Empty<Note>();
+            IEnumerable<Note> allNotes = AllSelectableNotes?.Select(sn => sn.Note) ?? Enumerable.Empty<Note>();
             return allNotes.Any(note =>
                 note != noteToIgnore &&
                 string.Equals(note.Title?.Trim(), title?.Trim(), StringComparison.CurrentCultureIgnoreCase));
@@ -234,8 +234,8 @@ namespace Névjegyzék
 
         private void OpenAddWindow()
         {
-            var vm = new NoteEditViewModel(isDuplicateTitle: title => HasDuplicateTitle(title));
-            var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+            NoteEditViewModel vm = new NoteEditViewModel(isDuplicateTitle: title => HasDuplicateTitle(title));
+            NoteEditWindow win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
             win.SetViewModel(vm);
 
             if (win.WindowState == WindowState.Minimized)
@@ -254,7 +254,7 @@ namespace Névjegyzék
 
             if (vm.IsSaved)
             {
-                var newNote = new Note();
+                Note newNote = new Note();
                 vm.UpdateNoteModel(newNote);
                 AllSelectableNotes.Insert(0, new SelectableNote { Note = newNote });
                 SaveChanges();
@@ -263,15 +263,15 @@ namespace Névjegyzék
 
         private void OpenEditWindow()
         {
-            var noteToEdit = SelectedSelectableNote?.Note ?? SelectedAllSelectableNote?.Note;
+            Note? noteToEdit = SelectedSelectableNote?.Note ?? SelectedAllSelectableNote?.Note;
 
             if (noteToEdit != null)
             {
-                var vm = new NoteEditViewModel(
+                NoteEditViewModel vm = new NoteEditViewModel(
                     noteToEdit,
                     title => HasDuplicateTitle(title, noteToEdit));
 
-                var win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
+                NoteEditWindow win = Application.Current.Windows.OfType<NoteEditWindow>().FirstOrDefault() ?? new NoteEditWindow();
                 win.SetViewModel(vm);
 
                 if (win.WindowState == WindowState.Minimized)
@@ -294,7 +294,7 @@ namespace Névjegyzék
 
                     if (SelectedSelectableNote?.Note == noteToEdit)
                     {
-                        var temp = SelectedSelectableNote;
+                        SelectableNote temp = SelectedSelectableNote;
                         SelectableNotes.Remove(temp);
                         SelectableNotes.Insert(0, temp);
                         SelectedSelectableNote = temp;
@@ -305,7 +305,7 @@ namespace Névjegyzék
             }
             else
             {
-                MessageBox.Show("Válasszon ki egy jegyzetet a módosításhoz!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectNoteToEdit"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -313,28 +313,28 @@ namespace Névjegyzék
         {
             if (_selectedContact == null)
             {
-                MessageBox.Show("Először válasszon ki egy névjegyet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var selectedNotes = AllSelectableNotes
-                .Where(item => item.IsSelectedForAssignment)
+            List<Note> selectedNotes = AllSelectableNotes
+                .Where(item => item.IsSelected)
                 .Select(item => item.Note)
                 .ToList();
 
             if (selectedNotes.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy hozzárendelendő jegyzetet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectNotesToAssign"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            foreach (var item in AllSelectableNotes)
+            foreach (SelectableNote item in AllSelectableNotes)
             {
-                item.IsSelectedForAssignment = false;
+                item.IsSelected = false;
             }
 
-            var allContacts = XmlFileManager.ContactLoading();
-            var target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
+            List<Contact> allContacts = XmlFileManager.ContactLoading();
+            Contact? target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
                 ?? allContacts.FirstOrDefault(c => c.Name == _selectedContact.Name && c.Phone == _selectedContact.Phone);
 
             if (target == null)
@@ -342,19 +342,19 @@ namespace Névjegyzék
                 return;
             }
 
-            var selectedIds = selectedNotes
+            HashSet<string> selectedIds = selectedNotes
                 .Select(note => note.Id)
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var contact in allContacts.Where(contact => contact.Id != target.Id))
+            foreach (Contact contact in allContacts.Where(contact => contact.Id != target.Id))
             {
-                var remainingNotes = contact.Notes
+                List<Note> remainingNotes = contact.Notes
                     .Where(note => !selectedIds.Contains(note.Id))
                     .ToList();
                 contact.Notes = new ObservableCollection<Note>(remainingNotes);
             }
 
-            foreach (var note in selectedNotes)
+            foreach (Note note in selectedNotes)
             {
                 note.ContactId = target.Id;
                 note.ContactName = target.Name;
@@ -366,8 +366,8 @@ namespace Névjegyzék
                 }
             }
 
-            var groups = XmlFileManager.LoadGroups();
-            foreach (var group in groups)
+            List<ContactGroup> groups = XmlFileManager.LoadGroups();
+            foreach (ContactGroup group in groups)
             {
                 group.Notes = new ObservableCollection<Note>(
                     group.Notes.Where(note => !selectedIds.Contains(note.Id)));
@@ -375,10 +375,6 @@ namespace Névjegyzék
             XmlFileManager.SaveGroups(groups);
 
             XmlFileManager.SaveContactsAndNotes(allContacts, AllSelectableNotes.Select(item => item.Note));
-            foreach (var item in AllSelectableNotes)
-            {
-                item.IsSelectedForAssignment = false;
-            }
 
             _selectedContact.Notes = target.Notes;
             LoadNotesForSelectedContact();
@@ -390,45 +386,45 @@ namespace Névjegyzék
         {
             if (_selectedContact == null)
             {
-                MessageBox.Show("Először válasszon ki egy névjegyet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectContactFirst"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var toUnassign = (SelectableNotes ?? new ObservableCollection<SelectableNote>())
+            List<SelectableNote> toUnassign = (SelectableNotes ?? new ObservableCollection<SelectableNote>())
                 .Where(item => item.IsSelectedForDelete)
                 .ToList();
 
             if (toUnassign.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki legalább egy eltávolítandó jegyzetet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectNotesToRemove"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan eltávolítja a kiválasztott {toUnassign.Count} jegyzetet erről a névjegyről?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmRemoveNotesFromContact"), toUnassign.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }
 
-            var unassignedIds = toUnassign.Select(item => item.Note.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-            var allContacts = XmlFileManager.ContactLoading();
-            var target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
+            HashSet<string> unassignedIds = toUnassign.Select(item => item.Note.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            List<Contact> allContacts = XmlFileManager.ContactLoading();
+            Contact? target = allContacts.FirstOrDefault(c => c.Id == _selectedContact.Id)
                 ?? allContacts.FirstOrDefault(c => c.Name == _selectedContact.Name && c.Phone == _selectedContact.Phone);
 
             if (target != null)
             {
-                var remainingNotes = target.Notes
+                List<Note> remainingNotes = target.Notes
                     .Where(note => !unassignedIds.Contains(note.Id))
                     .ToList();
                 target.Notes = new ObservableCollection<Note>(remainingNotes);
             }
 
-            foreach (var item in toUnassign)
+            foreach (SelectableNote item in toUnassign)
             {
                 item.IsSelectedForDelete = false;
 
-                var globalItem = AllSelectableNotes?.FirstOrDefault(
+                SelectableNote? globalItem = AllSelectableNotes?.FirstOrDefault(
                     globalNote => globalNote.Note.Id == item.Note.Id);
-                var noteToUnassign = globalItem?.Note ?? item.Note;
+                Note noteToUnassign = globalItem?.Note ?? item.Note;
                 noteToUnassign.ContactId = string.Empty;
                 noteToUnassign.ContactName = string.Empty;
                 noteToUnassign.GroupId = string.Empty;
@@ -446,38 +442,38 @@ namespace Névjegyzék
 
         private void DeleteAllNotes()
         {
-            var toDelete = AllSelectableNotes == null
+            ObservableCollection<SelectableNote> toDelete = AllSelectableNotes == null
                 ? new ObservableCollection<SelectableNote>()
                 : new ObservableCollection<SelectableNote>(
-                    AllSelectableNotes.Where(item => item.IsSelectedForDelete));
+                    AllSelectableNotes.Where(item => item.IsSelected));
 
             if (toDelete.Count == 0)
             {
-                MessageBox.Show("Jelöljön ki vagy válasszon ki törlendő jegyzetet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(LanguageManager.GetString("Dialogs_SelectNotesToDelete"), LanguageManager.GetString("Dialogs_ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"Biztosan törli a kiválasztott {toDelete.Count} jegyzetet az összes jegyzet közül?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(LanguageManager.GetString("Dialogs_ConfirmDeleteAllNotes"), toDelete.Count), LanguageManager.GetString("Dialogs_ConfirmationTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }
 
-            var deletedIds = toDelete.Select(item => item.Note.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            HashSet<string> deletedIds = toDelete.Select(item => item.Note.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            var allContacts = XmlFileManager.ContactLoading();
-            foreach (var contact in allContacts)
+            List<Contact> allContacts = XmlFileManager.ContactLoading();
+            foreach (Contact contact in allContacts)
             {
                 contact.Notes = new ObservableCollection<Note>(
                     contact.Notes.Where(note => !deletedIds.Contains(note.Id)));
             }
 
-            var remainingGlobalNotes = AllSelectableNotes
+            List<Note> remainingGlobalNotes = AllSelectableNotes
                 .Where(item => !deletedIds.Contains(item.Note.Id))
                 .Select(item => item.Note)
                 .ToList();
 
-            var groups = XmlFileManager.LoadGroups();
-            foreach (var group in groups)
+            List<ContactGroup> groups = XmlFileManager.LoadGroups();
+            foreach (ContactGroup group in groups)
             {
                 group.Notes = new ObservableCollection<Note>(
                     group.Notes.Where(note => !deletedIds.Contains(note.Id)));
@@ -486,17 +482,17 @@ namespace Névjegyzék
 
             XmlFileManager.SaveContactsAndNotes(allContacts, remainingGlobalNotes);
 
-            foreach (var item in toDelete)
+            foreach (SelectableNote item in toDelete)
             {
                 AllSelectableNotes.Remove(item);
-                item.IsSelectedForDelete = false;
+                item.IsSelected = false;
             }
 
             LoadContacts();
 
             if (_selectedContact != null)
             {
-                var refreshedSelected = Contacts.FirstOrDefault(contact => contact.Id == _selectedContact.Id)
+                Contact? refreshedSelected = Contacts.FirstOrDefault(contact => contact.Id == _selectedContact.Id)
                     ?? Contacts.FirstOrDefault(contact =>
                         contact.Name == _selectedContact.Name && contact.Phone == _selectedContact.Phone);
 

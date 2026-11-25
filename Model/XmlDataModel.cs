@@ -26,8 +26,8 @@ namespace Névjegyzék
         private static void ShowXmlFileWarning(string fileName, Exception exception)
         {
             MessageBox.Show(
-                $"A(z) '{fileName}' fájl sérült vagy hibás formátumú, ezért a program a hibás adatfájlt figyelmen kívül hagyja.\n\nRészletek: {exception.Message}",
-                "Adatfájl hiba",
+                $"{string.Format(LanguageManager.GetString("Dialogs_XmlFileCorrupt"), fileName)}\n\n{LanguageManager.GetString("Dialogs_DetailsLabel")} {exception.Message}",
+                LanguageManager.GetString("Dialogs_XmlFileErrorTitle"),
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
@@ -56,13 +56,13 @@ namespace Névjegyzék
 
         public void SaveNotes(IEnumerable<Note> notes)
         {
-            var normalizedNotes = notes
+            List<Note> normalizedNotes = notes
                 .Where(n => n != null)
                 .GroupBy(n => n.Id)
                 .Select(g => g.First())
                 .ToList();
 
-            foreach (var note in normalizedNotes)
+            foreach (Note note in normalizedNotes)
             {
                 note.EnsureId();
             }
@@ -103,16 +103,16 @@ namespace Névjegyzék
 
             List<Note> notes = LoadNotes();
 
-            foreach (var contact in contacts)
+            foreach (Contact contact in contacts)
             {
                 contact.EnsureId();
                 contact.Notes.Clear();
             }
 
-            foreach (var note in notes)
+            foreach (Note note in notes)
             {
                 note.EnsureId();
-                var contact = !string.IsNullOrWhiteSpace(note.ContactId)
+                Contact? contact = !string.IsNullOrWhiteSpace(note.ContactId)
                     ? contacts.FirstOrDefault(c => c.Id == note.ContactId)
                     : contacts.FirstOrDefault(c => c.Name == note.ContactName);
                 if (contact != null)
@@ -165,21 +165,21 @@ namespace Névjegyzék
                 return new List<ContactGroup>();
             }
 
-            var globalContacts = LoadContacts();
-            var notes = LoadNotes();
-            foreach (var group in groups)
+            List<Contact> globalContacts = LoadContacts();
+            List<Note> notes = LoadNotes();
+            foreach (ContactGroup group in groups)
             {
                 group.EnsureId();
                 group.Notes.Clear();
                 for (int i = 0; i < group.Contacts.Count; i++)
                 {
-                    var groupContact = group.Contacts[i];
+                    Contact groupContact = group.Contacts[i];
                     if (string.IsNullOrWhiteSpace(groupContact.Id))
                     {
                         groupContact.EnsureId();
                     }
 
-                    var freshContact = globalContacts.FirstOrDefault(c => c.Id == groupContact.Id)
+                    Contact? freshContact = globalContacts.FirstOrDefault(c => c.Id == groupContact.Id)
                         ?? globalContacts.FirstOrDefault(c => c.Name == groupContact.Name && c.Phone == groupContact.Phone);
                     if (freshContact != null)
                     {
@@ -187,7 +187,7 @@ namespace Névjegyzék
                     }
                 }
 
-                foreach (var note in notes.Where(n => n.GroupId == group.Id))
+                foreach (Note note in notes.Where(n => n.GroupId == group.Id))
                 {
                     note.EnsureId();
                     note.GroupId = group.Id;
@@ -200,14 +200,14 @@ namespace Névjegyzék
 
         public void SaveGroups(List<ContactGroup> groups)
         {
-            foreach (var group in groups)
+            foreach (ContactGroup group in groups)
             {
                 group.EnsureId();
-                foreach (var contact in group.Contacts)
+                foreach (Contact contact in group.Contacts)
                 {
                     contact.EnsureId();
                 }
-                foreach (var note in group.Notes)
+                foreach (Note note in group.Notes)
                 {
                     note.EnsureId();
                     note.GroupId = group.Id;

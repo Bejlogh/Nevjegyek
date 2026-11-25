@@ -103,11 +103,11 @@ namespace Névjegyzék
 
         private bool ValidateFields()
         {
-            var propertyNames = new[] { nameof(NoteTitle), nameof(NoteDescription) };
+            string[] propertyNames = new[] { nameof(NoteTitle), nameof(NoteDescription) };
 
-            foreach (var propertyName in propertyNames)
+            foreach (string propertyName in propertyNames)
             {
-                var error = this[propertyName];
+                string error = this[propertyName];
                 if (!string.IsNullOrWhiteSpace(error))
                 {
                     return false;

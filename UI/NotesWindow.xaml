@@ -92,8 +92,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsSelectedForAssignment, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,6,0" ToolTip="Hozzárendelés"/>
-                                <CheckBox IsChecked="{Binding IsSelectedForDelete, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,6,0" ToolTip="Törlés"/>
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock Text="{Binding Note.Title}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>

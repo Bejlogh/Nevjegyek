@@ -11,6 +11,7 @@ namespace Névjegyzék
     public class MainViewModel : ViewModelBase
     {
         private string _selectedLanguageCode;
+        private string _selectedSyncSource;
 
         public ICommand OpenContactsCommand { get; }
         public ICommand OpenNotesCommand { get; }
@@ -32,9 +33,24 @@ namespace Névjegyzék
             }
         }
 
+        public string SelectedSyncSource
+        {
+            get => _selectedSyncSource;
+            set
+            {
+                string normalizedSource = value == "sqlite" ? "sqlite" : "xml";
+                if (SetProperty(ref _selectedSyncSource, normalizedSource))
+                {
+                    AppConfig.SaveSynchronizationSource(normalizedSource);
+                }
+            }
+        }
+
         public MainViewModel()
         {
             _selectedLanguageCode = LanguageManager.CurrentLanguageCode;
+            AppSettingsData settings = AppConfig.Load();
+            _selectedSyncSource = settings.SynchronizationSource == "sqlite" ? "sqlite" : "xml";
 
             OpenContactsCommand = new RelayCommand(OpenContacts);
             OpenNotesCommand = new RelayCommand(OpenNotes);
@@ -61,21 +77,31 @@ namespace Névjegyzék
         {
             try
             {
-                XmlFileManager.SynchronizeToSqlite();
+                if (SelectedSyncSource == "sqlite")
+                {
+                    if (!SqliteDataManager.DatabaseExists)
+                    {
+                        throw new InvalidOperationException(LanguageManager.GetString("MainWindow_SyncSqliteMissing"));
+                    }
+
+                    XmlFileManager.SynchronizeFromSqlite();
+                }
+                else
+                {
+                    XmlFileManager.SynchronizeToSqlite();
+                }
+
                 MessageBox.Show(
-                    Application.Current.TryFindResource("MainWindow_SyncSucceeded") as string
-                        ?? "A szinkronizálás sikeres.",
-                    Application.Current.TryFindResource("MainWindow_SyncTitle") as string
-                        ?? "Szinkronizálás",
+                    LanguageManager.GetString("MainWindow_SyncSucceeded"),
+                    LanguageManager.GetString("MainWindow_SyncTitle"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"{Application.Current.TryFindResource("MainWindow_SyncFailed") as string ?? "A szinkronizálás sikertelen."}\n\n{ex.Message}",
-                    Application.Current.TryFindResource("MainWindow_SyncTitle") as string
-                        ?? "Szinkronizálás",
+                    $"{LanguageManager.GetString("MainWindow_SyncFailed")}\n\n{LanguageManager.GetString("Dialogs_DetailsLabel")} {ex.Message}",
+                    LanguageManager.GetString("MainWindow_SyncTitle"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -83,7 +109,7 @@ namespace Névjegyzék
 
         private async void OpenWindowWithLoading<T>() where T : Window, new()
         {
-            var existingWindow = System.Windows.Application.Current.Windows.OfType<T>().FirstOrDefault();
+            T? existingWindow = System.Windows.Application.Current.Windows.OfType<T>().FirstOrDefault();
             if (existingWindow != null)
             {
                 if (existingWindow.WindowState == WindowState.Minimized)
@@ -95,13 +121,13 @@ namespace Névjegyzék
                 return;
             }
 
-            var loadingWindow = new LoadingWindow(() => { });
+            LoadingWindow loadingWindow = new LoadingWindow(() => { });
 
             await loadingWindow.ShowLoadingAsync(async token =>
             {
                 try
                 {
-                    await Task.Delay(3000, token);
+                    await Task.Delay(0, token); //delay hosszanak beallitasa
                 }
                 catch (TaskCanceledException)
                 {
@@ -113,7 +139,7 @@ namespace Névjegyzék
                     return;
                 }
 
-                var window = new T();
+                T window = new T();
                 window.Owner = Application.Current.MainWindow;
                 if (window.WindowState == WindowState.Minimized)
                 {

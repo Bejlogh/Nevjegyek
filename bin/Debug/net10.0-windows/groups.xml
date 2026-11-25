@@ -9,15 +9,22 @@
         <Name>teszt1</Name>
         <Email>valami@teszt.hu</Email>
         <Phone>01234332323</Phone>
+        <Position />
+        <Address />
         <BirthDate />
-        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\0c6c33d8-38cd-46a6-987b-e7b95edbd712.jpg</ImagePath>
+        <Website />
+        <ImagePath>C:\Users\Tanulo\source\repos\Névjegyzék\Images\057ad3ea09c449f18dae05e5a5c846b5.jpg</ImagePath>
         <IsBlocked>false</IsBlocked>
       </Contact>
       <Contact>
         <Id>55e24b62ca5348609183716b47a4f327</Id>
         <Name>teszt2</Name>
+        <Email />
         <Phone>11111111</Phone>
+        <Position />
+        <Address />
         <BirthDate>2006-10-15</BirthDate>
+        <Website />
         <ImagePath />
         <IsBlocked>false</IsBlocked>
       </Contact>
@@ -30,9 +37,13 @@
       <Contact>
         <Id>fdfe1e2f61bb46a28e4f96f12f917e03</Id>
         <Name>teszt3</Name>
+        <Email />
         <Phone>3445676868678</Phone>
+        <Position />
+        <Address />
         <BirthDate>1985-07-11</BirthDate>
         <Website>aaaaa.hu</Website>
+        <ImagePath />
         <IsBlocked>false</IsBlocked>
       </Contact>
     </Contacts>

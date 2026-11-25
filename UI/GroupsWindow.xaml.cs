@@ -46,7 +46,7 @@ namespace Névjegyzék
 
         private void AvailableContactsList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var hit = e.OriginalSource as DependencyObject;
+            DependencyObject? hit = e.OriginalSource as DependencyObject;
             if (FindAncestor<CheckBox>(hit) != null)
             {
                 _checkboxInteractionInProgress = true;
@@ -65,7 +65,7 @@ namespace Névjegyzék
 
         private void AvailableContactsList_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            var listBox = sender as ListBox;
+            ListBox? listBox = sender as ListBox;
             if (listBox == null || e.LeftButton != MouseButtonState.Pressed)
             {
                 return;
@@ -76,13 +76,13 @@ namespace Névjegyzék
                 return;
             }
 
-            var hit = e.OriginalSource as DependencyObject;
+            DependencyObject? hit = e.OriginalSource as DependencyObject;
             if (FindAncestor<CheckBox>(hit) != null)
             {
                 return;
             }
 
-            var currentPoint = e.GetPosition(this);
+            Point currentPoint = e.GetPosition(this);
             if (Math.Abs(currentPoint.X - _dragStartPoint.X) < 5 && Math.Abs(currentPoint.Y - _dragStartPoint.Y) < 5)
             {
                 return;
@@ -93,8 +93,8 @@ namespace Névjegyzék
                 return;
             }
 
-            var viewModel = listBox.DataContext as GroupsViewModel;
-            var checkedContacts = viewModel?.AvailableContacts
+            GroupsViewModel? viewModel = listBox.DataContext as GroupsViewModel;
+            List<Contact> checkedContacts = viewModel?.AvailableContacts
                 .Where(x => x.IsSelected)
                 .Select(x => x.Contact)
                 .Distinct()
@@ -138,7 +138,7 @@ namespace Névjegyzék
                 return;
             }
 
-            var droppedContacts = e.Data.GetData(typeof(List<Contact>)) as List<Contact>;
+            List<Contact>? droppedContacts = e.Data.GetData(typeof(List<Contact>)) as List<Contact>;
             if (droppedContacts == null || droppedContacts.Count == 0)
             {
                 return;

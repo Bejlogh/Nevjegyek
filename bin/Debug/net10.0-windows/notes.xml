@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Note>
-    <Id>12afd493fac74a27b639f322128c7757</Id>
-    <Title>fgdfg</Title>
-    <Description>gdg dfdg dgf</Description>
-    <ContactName />
+    <Id>8a8a4401f9674123acb26b1c8357e339</Id>
+    <Title>dadasdas</Title>
+    <Description>dadasd adadadas dadasdasd</Description>
     <ContactId />
-    <GroupId>5e5aba655232436997a392e6687bc64c</GroupId>
+  </Note>
+  <Note>
+    <Id>4f36ab4a83dc44a8884ce0f0173f5fce</Id>
+    <Title>adasda</Title>
+    <Description>adada adasda dasdasdasda</Description>
+    <ContactName>teszt2</ContactName>
+    <ContactId>55e24b62ca5348609183716b47a4f327</ContactId>
+  </Note>
+  <Note>
+    <Id>0cdf667ed3c042479008f08ad576d383</Id>
+    <Title>sfdf</Title>
+    <Description>fdf fdfd df</Description>
+    <ContactName>teszt2</ContactName>
+    <ContactId>55e24b62ca5348609183716b47a4f327</ContactId>
   </Note>
 </ArrayOfNote>

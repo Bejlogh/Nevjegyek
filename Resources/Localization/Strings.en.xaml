@@ -12,6 +12,10 @@
     <sys:String x:Key="MainWindow_SyncSucceeded">Synchronization completed successfully.</sys:String>
     <sys:String x:Key="MainWindow_SyncFailed">Synchronization failed.</sys:String>
     <sys:String x:Key="MainWindow_LanguageLabel">Language:</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceLabel">Synchronization source:</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceXml">XML file</sys:String>
+    <sys:String x:Key="MainWindow_SyncSourceSqlite">SQLite database</sys:String>
+    <sys:String x:Key="MainWindow_SyncSqliteMissing">The SQLite database was not found. Synchronize from XML to SQLite first.</sys:String>
 
     <sys:String x:Key="ContactsWindow_Title">Contacts</sys:String>
     <sys:String x:Key="ContactsWindow_Contacts">Contacts</sys:String>
@@ -85,4 +89,39 @@
 
     <sys:String x:Key="Loading_Cancel">Cancel</sys:String>
     <sys:String x:Key="Loading_Title">Loading...</sys:String>
+
+    <sys:String x:Key="Dialogs_ErrorTitle">Error</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmationTitle">Confirmation</sys:String>
+    <sys:String x:Key="Dialogs_InvalidFileTitle">Invalid file</sys:String>
+    <sys:String x:Key="Dialogs_XmlFileErrorTitle">Data file error</sys:String>
+    <sys:String x:Key="Dialogs_SqliteSyncErrorTitle">SQLite synchronization error</sys:String>
+    <sys:String x:Key="Dialogs_DetailsLabel">Details:</sys:String>
+    <sys:String x:Key="Dialogs_XmlFileCorrupt">The '{0}' file is corrupted or has an invalid format, so the program will ignore the invalid data file.</sys:String>
+    <sys:String x:Key="Dialogs_XmlSavedSqliteSyncFailed">The XML file was saved, but synchronization to SQLite failed.</sys:String>
+    <sys:String x:Key="Dialogs_ImageDropInvalid">Please drop an image file here. Supported formats: .jpg, .jpeg, .png, .bmp.</sys:String>
+    <sys:String x:Key="Dialogs_ImageUploadInvalid">Please upload an image file (.jpg, .jpeg, .png, .bmp).</sys:String>
+    <sys:String x:Key="Dialogs_ImageUploadFailed">Error while uploading the image:</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupToEdit">Select a group to edit.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteGroup">Are you sure you want to delete this group?</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupToDelete">Select a group to delete.</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupFirst">Select a group first.</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactFromList">Select at least one contact from the list.</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToRemove">Select at least one contact to remove from the group.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmRemoveContactsFromGroup">Are you sure you want to remove the selected contacts from the group?</sys:String>
+    <sys:String x:Key="Dialogs_SelectNoteToEdit">Select a note to edit.</sys:String>
+    <sys:String x:Key="Dialogs_SelectGroupNotesToDelete">Select at least one note to delete using its checkbox.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteGroupNotes">Are you sure you want to delete the {0} selected notes?</sys:String>
+    <sys:String x:Key="Dialogs_SelectBlockedContactToUnblock">Select at least one blocked contact to unblock.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmUnblockContacts">Are you sure you want to unblock the {0} selected contacts?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToBlock">Select at least one contact to block using its checkbox.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmBlockContacts">Are you sure you want to block the {0} selected contacts?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactToEdit">Select a contact to edit.</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactsToDelete">Select at least one contact to delete using its checkbox.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteContacts">Are you sure you want to delete the {0} selected contacts?</sys:String>
+    <sys:String x:Key="Dialogs_SelectContactFirst">Select a contact first.</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToAssign">Select at least one note to assign.</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToRemove">Select at least one note to remove.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmRemoveNotesFromContact">Are you sure you want to remove the {0} selected notes from this contact?</sys:String>
+    <sys:String x:Key="Dialogs_SelectNotesToDelete">Select at least one note to delete.</sys:String>
+    <sys:String x:Key="Dialogs_ConfirmDeleteAllNotes">Are you sure you want to delete the {0} selected notes from all notes?</sys:String>
 </ResourceDictionary>

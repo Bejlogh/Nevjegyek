@@ -24,7 +24,7 @@ namespace Névjegyzék
                 languageCode = "hu";
             }
 
-            var normalizedCode = SupportedLanguages.ContainsKey(languageCode)
+            string normalizedCode = SupportedLanguages.ContainsKey(languageCode)
                 ? languageCode
                 : "hu";
 
@@ -42,26 +42,32 @@ namespace Névjegyzék
 
         public static void InitializeLanguage()
         {
-            var persistedLanguageCode = LoadPersistedLanguage();
+            string persistedLanguageCode = LoadPersistedLanguage();
             ApplyLanguage(persistedLanguageCode);
+        }
+
+        public static string GetString(string key)
+        {
+            return Application.Current?.TryFindResource(key) as string
+                ?? throw new InvalidOperationException($"Localization resource '{key}' was not found.");
         }
 
         private static void UpdateCulture(string languageCode)
         {
-            var app = Application.Current;
+            Application? app = Application.Current;
             if (app == null)
             {
                 return;
             }
 
-            var uri = new Uri($"pack://application:,,,/Resources/Localization/Strings.{languageCode}.xaml");
-            var dictionary = new ResourceDictionary { Source = uri };
+            Uri uri = new Uri($"pack://application:,,,/Resources/Localization/Strings.{languageCode}.xaml");
+            ResourceDictionary dictionary = new ResourceDictionary { Source = uri };
 
-            var existing = app.Resources.MergedDictionaries
+            List<ResourceDictionary> existing = app.Resources.MergedDictionaries
                 .Where(x => x.Source != null && x.Source.OriginalString.Contains("Strings."))
                 .ToList();
 
-            foreach (var item in existing)
+            foreach (ResourceDictionary item in existing)
             {
                 app.Resources.MergedDictionaries.Remove(item);
             }
@@ -76,7 +82,7 @@ namespace Névjegyzék
         {
             try
             {
-                var settings = AppConfig.Load();
+                AppSettingsData settings = AppConfig.Load();
                 return SupportedLanguages.ContainsKey(settings.CurrentLanguageCode)
                     ? settings.CurrentLanguageCode
                     : "hu";

@@ -11,6 +11,9 @@ namespace Névjegyzék
         [XmlElement("CurrentLanguageCode")]
         public string CurrentLanguageCode { get; set; } = "hu";
 
+        [XmlElement("SynchronizationSource")]
+        public string SynchronizationSource { get; set; } = "xml";
+
         [XmlArray("DataFiles")]
         [XmlArrayItem("FileName")]
         public List<string> FileNames { get; set; } = new()
@@ -54,21 +57,21 @@ namespace Névjegyzék
 
             if (!File.Exists(path))
             {
-                var defaultSettings = CreateDefault();
+                AppSettingsData defaultSettings = CreateDefault();
                 Save(defaultSettings);
                 return defaultSettings;
             }
 
             try
             {
-                var serializer = new XmlSerializer(typeof(AppSettingsData));
-                using var reader = new StreamReader(path);
-                var settings = serializer.Deserialize(reader) as AppSettingsData;
+                XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsData));
+                using StreamReader reader = new StreamReader(path);
+                AppSettingsData? settings = serializer.Deserialize(reader) as AppSettingsData;
                 return settings ?? CreateDefault();
             }
             catch
             {
-                var defaultSettings = CreateDefault();
+                AppSettingsData defaultSettings = CreateDefault();
                 Save(defaultSettings);
                 return defaultSettings;
             }
@@ -94,15 +97,22 @@ namespace Névjegyzék
                 Directory.CreateDirectory(directory);
             }
 
-            var serializer = new XmlSerializer(typeof(AppSettingsData));
-            using var writer = new StreamWriter(path);
+            XmlSerializer serializer = new XmlSerializer(typeof(AppSettingsData));
+            using StreamWriter writer = new StreamWriter(path);
             serializer.Serialize(writer, settings);
         }
 
         public static void SaveLanguage(string languageCode)
         {
-            var settings = Load();
+            AppSettingsData settings = Load();
             settings.CurrentLanguageCode = languageCode;
+            Save(settings);
+        }
+
+        public static void SaveSynchronizationSource(string source)
+        {
+            AppSettingsData settings = Load();
+            settings.SynchronizationSource = source;
             Save(settings);
         }
     }

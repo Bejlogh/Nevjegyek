@@ -30,12 +30,12 @@ namespace Névjegyzék
             Owner = _owner;
             Show();
 
-            var progressTask = Task.Run(async () =>
+            Task progressTask = Task.Run(async () =>
             {
-                var start = Environment.TickCount64;
+                long start = Environment.TickCount64;
                 while (!_cancellationTokenSource.IsCancellationRequested)
                 {
-                    var elapsed = Environment.TickCount64 - start;
+                    long elapsed = Environment.TickCount64 - start;
                     if (elapsed >= 3000)
                     {
                         break;
